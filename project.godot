@@ -14,6 +14,10 @@ config/name="Subzoos"
 run/main_scene="res://scenes/GameMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+MusicPlayer="*res://scenes/GameMenu.tscn"
+
 [display]
 
 window/size/width=1080
