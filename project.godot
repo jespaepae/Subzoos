@@ -17,6 +17,8 @@ config/icon="res://icon.png"
 [autoload]
 
 MusicController="*res://autoloads/MusicController.tscn"
+Game="*res://scenes/Game.tscn"
+SaveFile="*res://save/save_file.gd"
 
 [display]
 
