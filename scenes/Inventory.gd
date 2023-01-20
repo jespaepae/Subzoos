@@ -10,7 +10,6 @@ extends Node2D
 func _ready():
 	$TankMusic.stop()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_BackButton_pressed():
+	if get_tree().change_scene("res://scenes/Game.tscn") != OK:
+		print ("An unexpected error occured when trying to switch to the Game scene")
