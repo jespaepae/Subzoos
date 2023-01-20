@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Subzoos"
-run/main_scene="res://scenes/GameMenu.tscn"
+run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-MusicPlayer="*res://scenes/GameMenu.tscn"
+MusicController="*res://autoloads/MusicController.tscn"
 
 [display]
 
