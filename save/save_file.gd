@@ -16,7 +16,8 @@ func load_data():
 	var file = File.new()
 	if not file.file_exists(SAVE_FILE):
 		game_data = {
-			"money": 0
+			"money": 0,
+			"backgrounds": []
 		}
 		save_data()
 	file.open(SAVE_FILE, File.READ)

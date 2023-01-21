@@ -13,6 +13,7 @@ config_version=4
 config/name="Subzoos"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

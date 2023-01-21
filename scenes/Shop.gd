@@ -1,15 +1,16 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+onready var ShopTitle = $ShopTitle
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	MusicController.play_shop_music()
+	self.set_font_size(160)
 
 func _on_BackButton_pressed():
 	if get_tree().change_scene("res://scenes/Game.tscn") != OK:
 		print ("An unexpected error occured when trying to switch to the Game scene")
+
+func set_font_size(size):
+	var font = ShopTitle.get_font("font")
+	font.size = size
