@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tank floor 1.png-f347a092030990627761332637664c28.stex"
+path="res://.import/hawaiian 4.png-1ad5855566a6ccbb8b8519009d14530c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tank floor/tank floor 1.png"
-dest_files=[ "res://.import/tank floor 1.png-f347a092030990627761332637664c28.stex" ]
+source_file="res://assets/images/tank decor/hawaiian 4.png"
+dest_files=[ "res://.import/hawaiian 4.png-1ad5855566a6ccbb8b8519009d14530c.stex" ]
 
 [params]
 

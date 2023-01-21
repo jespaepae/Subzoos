@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tank floor 1.png-f347a092030990627761332637664c28.stex"
+path="res://.import/shop bg.png-8590f37c05feb44983928e63bcf0a02d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tank floor/tank floor 1.png"
-dest_files=[ "res://.import/tank floor 1.png-f347a092030990627761332637664c28.stex" ]
+source_file="res://assets/images/menus and ui/shop bg.png"
+dest_files=[ "res://.import/shop bg.png-8590f37c05feb44983928e63bcf0a02d.stex" ]
 
 [params]
 

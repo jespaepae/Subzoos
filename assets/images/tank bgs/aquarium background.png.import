@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/aquarium background.png-2d6c6daefc6422ccce960a74508ee776.stex"
+path="res://.import/aquarium background.png-8c3c75e799e9a3c8e9a4c437e061c926.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/aquarium background.png"
-dest_files=[ "res://.import/aquarium background.png-2d6c6daefc6422ccce960a74508ee776.stex" ]
+source_file="res://assets/images/tank bgs/aquarium background.png"
+dest_files=[ "res://.import/aquarium background.png-8c3c75e799e9a3c8e9a4c437e061c926.stex" ]
 
 [params]
 
