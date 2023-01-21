@@ -18,9 +18,9 @@
 [ext_resource path="res://assets/images/sea_monkey/Timeline 1_0005.png" type="Texture" id=16]
 [ext_resource path="res://assets/images/sea_monkey/Timeline 1_0008.png" type="Texture" id=17]
 [ext_resource path="res://assets/images/sea_monkey/Timeline 1_0003.png" type="Texture" id=18]
-[ext_resource path="res://assets/images/shop icon.png" type="Texture" id=19]
+[ext_resource path="res://assets/images/menus and ui/shop icon.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=20]
-[ext_resource path="res://assets/images/inventory icon.png" type="Texture" id=21]
+[ext_resource path="res://assets/images/menus and ui/inventory icon.png" type="Texture" id=21]
 [ext_resource path="res://assets/images/ded subzoo anim/Timeline 1_0001.png" type="Texture" id=22]
 [ext_resource path="res://assets/images/ded subzoo anim/Timeline 1_0002.png" type="Texture" id=23]
 [ext_resource path="res://assets/images/ded subzoo anim/Timeline 1_0000.png" type="Texture" id=24]
@@ -117,12 +117,23 @@ font_data = ExtResource( 6 )
 [node name="Tank" type="Node2D"]
 script = ExtResource( 20 )
 
-[node name="Sea" type="Sprite" parent="."]
-position = Vector2( 540, 960 )
-texture = ExtResource( 5 )
+[node name="Sea" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="TankFloor1" type="Sprite" parent="Sea"]
+visible = false
+position = Vector2( 540, 960 )
 texture = ExtResource( 8 )
+
+[node name="TankFloor" type="TextureRect" parent="Sea"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sea3" type="Sprite" parent="."]
+visible = false
+position = Vector2( 540, 960 )
+texture = ExtResource( 5 )
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2( 528, 852 )
@@ -134,7 +145,7 @@ position = Vector2( -1, -6 )
 scale = Vector2( 0.201029, 0.212291 )
 frames = SubResource( 1 )
 animation = "display"
-frame = 6
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
@@ -175,7 +186,7 @@ position = Vector2( -1, -6 )
 scale = Vector2( 0.201029, 0.212291 )
 frames = SubResource( 1 )
 animation = "baby"
-frame = 7
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
@@ -194,23 +205,24 @@ margin_bottom = 305.0
 texture_normal = ExtResource( 21 )
 
 [node name="Money" type="Label" parent="."]
-margin_left = 403.0
-margin_top = 17.0
-margin_right = 751.0
-margin_bottom = 180.0
+margin_left = 448.0
+margin_top = 18.0
+margin_right = 796.0
+margin_bottom = 181.0
 custom_fonts/font = SubResource( 10 )
 text = "0"
-align = 2
 valign = 1
 
 [node name="MoneyButton" type="Button" parent="."]
-margin_left = -404.0
-margin_top = 422.0
-margin_right = -272.0
-margin_bottom = 538.0
+margin_left = 374.0
+margin_top = 207.0
+margin_right = 459.0
+margin_bottom = 244.0
+rect_scale = Vector2( 4, 4 )
+text = "Add money"
 
 [node name="Coin" type="Sprite" parent="."]
-position = Vector2( 404, 91 )
+position = Vector2( 369, 91 )
 texture = ExtResource( 32 )
 
 [connection signal="timeout" from="SwimTimer" to="RigidBody2D" method="_on_SwimTimer_timeout"]

@@ -17,7 +17,12 @@ func load_data():
 	if not file.file_exists(SAVE_FILE):
 		game_data = {
 			"money": 0,
-			"backgrounds": []
+			"background": {
+				"name":"res://assets/images/tank bgs/aquarium background.png",
+				"floor":"res://assets/images/tank floor/tank floor 1.png"
+			},
+			"food": 5,
+			"eggs": 1
 		}
 		save_data()
 	file.open(SAVE_FILE, File.READ)
