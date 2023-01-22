@@ -402,4 +402,5 @@ custom_fonts/font = SubResource( 3 )
 text = "FOOD"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="EggsButton" to="." method="_on_EggsButton_pressed"]
 [connection signal="pressed" from="FoodButton" to="." method="_on_FoodButton_pressed"]

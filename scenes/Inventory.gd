@@ -26,7 +26,15 @@ func set_font_size(label, size):
 func _on_FoodButton_pressed():
 	if(game_data.food > 0):
 		game_data.food -= 1
-		game_data.set_in_tank.resource = "res://assets/images/subzoo food.png"
+		game_data.set_in_tank.resource = "food"
+		game_data.set_in_tank.status = 1
+		SaveFile.save_data()
+		self.change_to_scene("res://scenes/Game.tscn")
+		
+func _on_EggsButton_pressed():
+	if(game_data.eggs > 0):
+		game_data.eggs -= 1
+		game_data.set_in_tank.resource = "baby"
 		game_data.set_in_tank.status = 1
 		SaveFile.save_data()
 		self.change_to_scene("res://scenes/Game.tscn")
@@ -37,3 +45,4 @@ func update_food_label():
 func change_to_scene(scene):
 	if get_tree().change_scene(scene) != OK:
 		print ("An unexpected error occured when trying to switch to" + scene + "scene")
+
