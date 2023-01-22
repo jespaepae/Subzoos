@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/images/tank decor/plant 5.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/tank decor/plant 3.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/tank decor/plant 4.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/menus and ui/money banner.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/subzoo food.png" type="Texture" id=5]
 [ext_resource path="res://fonts/Sugar Snow.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/images/tank decor/plant 2.png" type="Texture" id=15]
@@ -70,6 +71,12 @@ margin_bottom = 40.0
 margin_right = 40.0
 margin_bottom = 40.0
 
+[node name="MoneyBanner" type="TextureRect" parent="."]
+margin_right = 1080.0
+margin_bottom = 1920.0
+texture = ExtResource( 4 )
+expand = true
+
 [node name="SwimTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
@@ -106,15 +113,16 @@ margin_bottom = 305.0
 texture_normal = ExtResource( 21 )
 
 [node name="Money" type="Label" parent="."]
-margin_left = 448.0
-margin_top = 18.0
-margin_right = 796.0
-margin_bottom = 181.0
+margin_left = 435.0
+margin_top = -9.0
+margin_right = 783.0
+margin_bottom = 154.0
 custom_fonts/font = SubResource( 10 )
 text = "0"
 valign = 1
 
 [node name="MoneyButton" type="Button" parent="."]
+visible = false
 margin_left = 374.0
 margin_top = 207.0
 margin_right = 459.0
@@ -123,7 +131,7 @@ rect_scale = Vector2( 4, 4 )
 text = "Add money"
 
 [node name="Coin" type="Sprite" parent="."]
-position = Vector2( 369, 91 )
+position = Vector2( 364, 75 )
 texture = ExtResource( 32 )
 
 [node name="Food" type="RigidBody2D" parent="."]
