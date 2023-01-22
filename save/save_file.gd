@@ -22,7 +22,17 @@ func load_data():
 				"floor":"res://assets/images/tank floor/tank floor 1.png"
 			},
 			"food": 5,
-			"eggs": 1
+			"eggs": 1,
+			"set_in_tank": {
+				"status": 0, 	#0 if the player doesn't hsve to place anything, 1 in other casea
+				"resource":""
+			},
+			"sea_monkeys": [ {
+				"number": 0,
+				"status": "baby",
+				"life": 6
+			}
+			]
 		}
 		save_data()
 	file.open(SAVE_FILE, File.READ)
