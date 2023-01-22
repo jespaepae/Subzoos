@@ -18,6 +18,7 @@ func _ready():
 		self.change_background(game_data.background.name)
 		self.change_floor(game_data.background.floor)
 		self.load_sea_monkeys()
+		self.load_food()
 		if game_data.set_in_tank.status == 1:
 			self.hide_buttons()
 		else:
@@ -62,9 +63,9 @@ func show_buttons():
 	
 func _input(event):
 	if game_data.set_in_tank.status == 1 and event is InputEventMouseButton: 
-		print(event.position)
 		self.show_buttons()
-		self.add_food(event)
+		self.add_food(event.position.x, event.position.y)
+		self.save_food(event.position.x, event.position.y)
 		game_data.set_in_tank.status = 0
 		SaveFile.save_data()
 		
@@ -72,24 +73,30 @@ func load_sea_monkeys():
 	for sea_monkey in game_data.sea_monkeys:
 		pass
 		
-func add_food(event):
+func add_food(x, y):
 	# Create Food nodes
 	var FoodNode = RigidBody2D.new()
 	var SpriteNode = Sprite.new()
 	var CollisionShape2DNode = CollisionShape2D.new()
 	var CircleShape2DNode = CircleShape2D.new()
 	
+	# Detect collisions
+	FoodNode.contact_monitor = true
+	FoodNode.contacts_reported = 1
+	FoodNode.sleeping = false
+	
 	# Set sprite texture and position
 	SpriteNode.texture = load("res://assets/images/subzoo food.png")
-	SpriteNode.position = event.position
+	SpriteNode.position.x = x
+	SpriteNode.position.y = y
 	SpriteNode.scale.x = 0.238
 	SpriteNode.scale.y = 0.238
 	
 	# Set Collision shape and position
-	CollisionShape2DNode.position = event.position
+	CollisionShape2DNode.position.x = x
+	CollisionShape2DNode.position.y = y
 	CollisionShape2DNode.shape = CircleShape2DNode
 	CircleShape2DNode.radius = 31.34
-	
 	
 	# Join all nodes
 	FoodNode.set_script(load("res://scenes/Food.gd"))
@@ -99,5 +106,28 @@ func add_food(event):
 	self.add_child(FoodNode)
 
 func _on_Area2D_body_entered(body):
-	if(body.name == "Food"):
+	if(body.get_child(0) is Sprite):
+		delete_food(body.get_child(0).position.x, body.get_child(0).position.y)
+		SaveFile.save_data()
 		body.queue_free()
+		
+		
+func save_food(x, y):
+	var dict = {
+		"x": x,
+		"y": y
+	}
+	game_data.foods.append(dict)
+	
+func delete_food(x, y):
+	var i = 0
+	for food in game_data.foods:
+		if food.x == x and food.y == y:
+			break
+		i += 1
+	if i <  game_data.foods.size():
+		game_data.foods.remove(i)
+
+func load_food():
+	for food in game_data.foods:
+		add_food(food.x, food.y)

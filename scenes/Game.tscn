@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/images/tank decor/plant 5.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/tank decor/plant 3.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/tank decor/plant 4.png" type="Texture" id=3]
-[ext_resource path="res://scenes/RigidBody2D.gd" type="Script" id=4]
+[ext_resource path="res://scenes/SeaMonkey.gd" type="Script" id=4]
 [ext_resource path="res://assets/images/subzoo food.png" type="Texture" id=5]
 [ext_resource path="res://fonts/Sugar Snow.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/images/sea_monkey/Timeline 1_0000.png" type="Texture" id=7]
@@ -141,7 +141,7 @@ position = Vector2( -1, -6 )
 scale = Vector2( 0.201029, 0.212291 )
 frames = SubResource( 1 )
 animation = "display"
-frame = 3
+frame = 8
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
@@ -189,7 +189,7 @@ position = Vector2( -1, -6 )
 scale = Vector2( 0.201029, 0.212291 )
 frames = SubResource( 1 )
 animation = "baby"
-frame = 3
+frame = 8
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
@@ -242,6 +242,7 @@ position = Vector2( 631, 1008 )
 shape = SubResource( 11 )
 
 [connection signal="body_entered" from="RigidBody2D/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="SwimTimer" to="RigidBody2D" method="_on_SwimTimer_timeout"]
 [connection signal="timeout" from="SwimTimer" to="RigidBody2D2" method="_on_SwimTimer_timeout"]
 [connection signal="pressed" from="ShopButton" to="." method="_on_ShopButton_pressed"]
