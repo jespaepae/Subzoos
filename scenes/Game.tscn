@@ -162,6 +162,7 @@ position = Vector2( 417, 983.068 )
 scale = Vector2( 0.186441, 0.186441 )
 frames = ExtResource( 7 )
 animation = "bubbles"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bubbles"]
@@ -172,6 +173,8 @@ disabled = true
 [node name="BubbleTimer" type="Timer" parent="."]
 wait_time = 11.429
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="ShopButton" to="." method="_on_ShopButton_pressed"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_InventoryButton_pressed"]

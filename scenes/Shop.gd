@@ -13,6 +13,7 @@ func _ready():
 	
 
 func _on_BackButton_pressed():
+	MusicController.play_ui_clic()
 	if get_tree().change_scene("res://scenes/Game.tscn") != OK:
 		print ("An unexpected error occured when trying to switch to the Game scene")
 

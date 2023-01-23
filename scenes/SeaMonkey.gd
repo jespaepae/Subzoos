@@ -6,22 +6,26 @@ onready var sprite = self.get_child(0)
 var life = -1
 var id = 0
 var money_label = Node
+var collision_shape = Node
 var Game = load("res://scenes/Game.gd")
 onready var game_data = SaveFile.game_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
+	rng.randomize()
 	var timer = get_node("../SwimTimer")
 	var area2 = get_child(2)
 	var grow_up_timer = self.get_child(3)
 	money_label = get_node("../Money")
+	collision_shape = get_child(1)
 	
 	timer.connect("timeout", self, "_on_SwimTimer_timeout")
 	area2.connect("body_entered", self, "_on_Area2D_body_entered")
 	grow_up_timer.connect("timeout", self, "_on_GrowUpTimer_timeout")
 	
 	swim()
+	# Set random start frame so that every sea monkey swims different
+	self.get_child(0).frame = rng.randi_range(0, 8)
 	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,6 +61,7 @@ func _on_SwimTimer_timeout():
 		var x = 0
 		var y = -300
 		sprite.animation = "ded"
+		collision_shape.disabled = true
 		set_linear_velocity(Vector2(x,y))
 
 func swim():
@@ -69,6 +74,7 @@ func swim():
 		var x = 0
 		var y = -300
 		sprite.animation = "ded"
+		collision_shape.disabled = true
 		set_linear_velocity(Vector2(x,y))
 
 
@@ -99,6 +105,7 @@ func delete_sea_monkey():
 		
 func grow_up():
 	if (sprite.animation != "ded" and sprite.animation != "display"):
+		MusicController.play_pop_sf()
 		game_data.money += 5
 		money_label.text = "%04d" % game_data.money
 		sprite.animation = "display"

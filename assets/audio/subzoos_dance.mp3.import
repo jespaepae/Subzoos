@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/subzoos_dance.mp3-82fbad8640aab33ca077562cb0218148.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/subzoos_dance.mp3"
+dest_files=[ "res://.import/subzoos_dance.mp3-82fbad8640aab33ca077562cb0218148.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

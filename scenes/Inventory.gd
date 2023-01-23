@@ -17,6 +17,7 @@ func _ready():
 	EggsLabel.text = "EGGS" + "  x" + String(game_data.eggs)
 
 func _on_BackButton_pressed():
+	MusicController.play_ui_clic()
 	self.change_to_scene("res://scenes/Game.tscn")
 
 func set_font_size(label, size):
@@ -25,6 +26,7 @@ func set_font_size(label, size):
 
 func _on_FoodButton_pressed():
 	if(game_data.food > 0):
+		MusicController.play_ui_clic()
 		game_data.food -= 1
 		game_data.set_in_tank.resource = "food"
 		game_data.set_in_tank.status = 1
@@ -33,6 +35,7 @@ func _on_FoodButton_pressed():
 		
 func _on_EggsButton_pressed():
 	if(game_data.eggs > 0):
+		MusicController.play_ui_clic()
 		game_data.eggs -= 1
 		game_data.set_in_tank.resource = "baby"
 		game_data.set_in_tank.status = 1

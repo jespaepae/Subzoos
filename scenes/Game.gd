@@ -30,12 +30,14 @@ func _ready():
 func _on_ShopButton_pressed():
 	self.update_sea_monkeys()
 	SaveFile.save_data()
+	MusicController.play_ui_clic()
 	if get_tree().change_scene("res://scenes/Shop.tscn") != OK:
 		print ("An unexpected error occured when trying to switch to the Shop scene")
 
 func _on_InventoryButton_pressed():
 	self.update_sea_monkeys()
 	SaveFile.save_data()
+	MusicController.play_ui_clic()
 	if get_tree().change_scene("res://scenes/Inventory.tscn") != OK:
 		print ("An unexpected error occured when trying to switch to the Inventory scene")
 
@@ -82,6 +84,7 @@ func _input(event):
 			self.save_sea_monkey(event.position.x, event.position.y, "baby", 20, id, 7)
 			game_data.set_in_tank.status = 0
 			SaveFile.save_data()
+		MusicController.play_pop_sf()
 		
 func add_sea_monkey(x, y, status, life, id, time_to_grow_up):
 	# Create Sea monkey nodes
