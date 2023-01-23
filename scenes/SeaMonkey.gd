@@ -13,8 +13,13 @@ func _ready():
 	randomize()
 	var timer = get_node("../SwimTimer")
 	var area2 = get_child(2)
+	var grow_up_timer = self.get_child(3)
+	
 	timer.connect("timeout", self, "_on_SwimTimer_timeout")
 	area2.connect("body_entered", self, "_on_Area2D_body_entered")
+	grow_up_timer.connect("timeout", self, "_on_GrowUpTimer_timeout")
+	
+	swim()
 	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,10 +58,16 @@ func _on_SwimTimer_timeout():
 		set_linear_velocity(Vector2(x,y))
 
 func swim():
-	rng.randomize()
-	var x = rng.randf_range(-200.0, 200.0)
-	var y = rng.randf_range(-200.0, 200.0)
-	set_linear_velocity(Vector2(x,y))
+	if sprite.animation != "ded":
+		rng.randomize()
+		var x = rng.randf_range(-200.0, 200.0)
+		var y = rng.randf_range(-200.0, 200.0)
+		set_linear_velocity(Vector2(x,y))
+	else:
+		var x = 0
+		var y = -300
+		sprite.animation = "ded"
+		set_linear_velocity(Vector2(x,y))
 
 
 func _on_Area2D_body_entered(body):
@@ -83,3 +94,10 @@ func delete_sea_monkey():
 		i += 1
 	if game_data.sea_monkeys.size():
 		game_data.sea_monkeys.remove(i)
+		
+func grow_up():
+	if (sprite.animation != "ded"):
+		sprite.animation = "display"
+	
+func _on_GrowUpTimer_timeout():
+	grow_up()

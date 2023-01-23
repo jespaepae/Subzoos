@@ -79,12 +79,12 @@ func _input(event):
 		elif(game_data.set_in_tank.resource == "baby"):
 			self.show_buttons()
 			var id = randi()
-			self.add_sea_monkey(event.position.x, event.position.y, "baby", 20, id)
-			self.save_sea_monkey(event.position.x, event.position.y, "baby", 20, id)
+			self.add_sea_monkey(event.position.x, event.position.y, "baby", 20, id, 7)
+			self.save_sea_monkey(event.position.x, event.position.y, "baby", 20, id, 7)
 			game_data.set_in_tank.status = 0
 			SaveFile.save_data()
 		
-func add_sea_monkey(x, y, status, life, id):
+func add_sea_monkey(x, y, status, life, id, time_to_grow_up):
 	# Create Sea monkey nodes
 	var SeaMonkeyNode = RigidBody2D.new()
 	var AnimatedSpriteNode = AnimatedSprite.new()
@@ -93,6 +93,7 @@ func add_sea_monkey(x, y, status, life, id):
 	var CollisionShape2DNode2 = CollisionShape2D.new()
 	var RectangleShape2DNode = RectangleShape2D.new()
 	var RectangleShape2DNode2 = RectangleShape2D.new()
+	var TimerNode = Timer.new()
 	
 	# Sea Monkey Node Configuration
 	SeaMonkeyNode.mode = RigidBody2D.MODE_CHARACTER
@@ -130,21 +131,30 @@ func add_sea_monkey(x, y, status, life, id):
 	CollisionShape2DNode2.position.x = 0
 	CollisionShape2DNode2.position.y = 0
 	
+	# Timer Configuration
+	if(time_to_grow_up > 0):
+		TimerNode.wait_time = time_to_grow_up
+	else:
+		TimerNode.wait_time = 0.1
+	TimerNode.autostart = true
+	
 	#Join all nodes
 	SeaMonkeyNode.add_child(AnimatedSpriteNode)
 	SeaMonkeyNode.add_child(CollisionShape2DNode)
 	SeaMonkeyNode.add_child(Area2DNode)
 	Area2DNode.add_child(CollisionShape2DNode2)
+	SeaMonkeyNode.add_child(TimerNode)
 	
 	self.add_child(SeaMonkeyNode)
 	
-func save_sea_monkey(x, y, status, life, id):
+func save_sea_monkey(x, y, status, life, id, time_to_grow_up):
 	var dir = {
 		"life": life,
 		"status": status,
 		"x": x,
 		"y": y,
-		"id": id
+		"id": id,
+		"time_to_grow_up": time_to_grow_up
 	}
 	var i = 0
 	for sea_monkey in game_data.sea_monkeys:
@@ -157,7 +167,7 @@ func save_sea_monkey(x, y, status, life, id):
 	
 func load_sea_monkeys():
 	for sea_monkey in game_data.sea_monkeys:
-		self.add_sea_monkey(sea_monkey.x, sea_monkey.y, sea_monkey.status, sea_monkey.life, sea_monkey.id)
+		self.add_sea_monkey(sea_monkey.x, sea_monkey.y, sea_monkey.status, sea_monkey.life, sea_monkey.id, sea_monkey.time_to_grow_up)
 
 func update_sea_monkeys():
 	var sea_monkeys_in_screen = self.get_sea_monkeys_in_screen()
@@ -165,7 +175,8 @@ func update_sea_monkeys():
 		var new_x = sea_monkey.position.x
 		var new_y = sea_monkey.position.y
 		var new_status = sea_monkey.get_child(0).animation
-		self.save_sea_monkey(new_x, new_y, new_status, sea_monkey.life, sea_monkey.id)
+		var time_to_grow_up = sea_monkey.get_child(3).time_left
+		self.save_sea_monkey(new_x, new_y, new_status, sea_monkey.life, sea_monkey.id, time_to_grow_up)
 		
 func add_food(x, y):
 	# Create Food nodes

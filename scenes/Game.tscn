@@ -122,7 +122,6 @@ text = "0"
 valign = 1
 
 [node name="MoneyButton" type="Button" parent="."]
-visible = false
 margin_left = 374.0
 margin_top = 207.0
 margin_right = 459.0
