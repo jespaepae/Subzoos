@@ -27,6 +27,10 @@ func _ready():
 		else:
 			self.show_buttons()
 
+func _process(_delta):
+	self.update_sea_monkeys()
+	SaveFile.save_data()
+
 func _on_ShopButton_pressed():
 	self.update_sea_monkeys()
 	SaveFile.save_data()
@@ -220,17 +224,18 @@ func add_bubbles():
 	var CollisionShape2DNode = CollisionShape2D.new()
 	
 	# Bubbles node configuration
-	BubblesNode.linear_velocity.y = -400
+	BubblesNode.linear_velocity.y = rng.randf_range(-400.0, -500.0)
 	BubblesNode.position.x = rng.randf_range(30, 1050)
 	BubblesNode.position.y = 2000
 	BubblesNode.set_script(load("res://scenes/Bubbles.gd"))
 	
 	# Animated Sprite Node Configuration
+	var BubblesScale = rng.randf_range(0.15, 0.25)
 	AnimatedSpriteNode.frames = load("res://scenes/Bubbles.tres")
 	AnimatedSpriteNode.animation = "bubbles"
 	AnimatedSpriteNode.playing = true
-	AnimatedSpriteNode.scale.x = 0.186
-	AnimatedSpriteNode.scale.y = 0.186
+	AnimatedSpriteNode.scale.x = BubblesScale
+	AnimatedSpriteNode.scale.y = BubblesScale
 	
 	# Join all nodes
 	BubblesNode.add_child(AnimatedSpriteNode)
@@ -282,4 +287,7 @@ func get_sea_monkeys_in_screen():
 
 
 func _on_BubbleTimer_timeout():
+	rng.randomize()
+	var new_timer = rng.randf_range(1.0, 15.0)
+	self.get_node("BubbleTimer").wait_time = new_timer
 	add_bubbles()

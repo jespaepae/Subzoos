@@ -174,7 +174,8 @@ disabled = true
 wait_time = 11.429
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 7 )
 
 [connection signal="pressed" from="ShopButton" to="." method="_on_ShopButton_pressed"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_InventoryButton_pressed"]

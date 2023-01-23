@@ -63,6 +63,7 @@ func _on_SwimTimer_timeout():
 		sprite.animation = "ded"
 		collision_shape.disabled = true
 		set_linear_velocity(Vector2(x,y))
+		self.get_child(0).rotation = atan2(y,x) + PI/2
 
 func swim():
 	if sprite.animation != "ded":
@@ -70,20 +71,23 @@ func swim():
 		var x = rng.randf_range(-200.0, 200.0)
 		var y = rng.randf_range(-200.0, 200.0)
 		set_linear_velocity(Vector2(x,y))
+		self.get_child(0).rotation = atan2(y,x) + PI/2
 	else:
 		var x = 0
 		var y = -300
+		self.get_child(0).rotation = 0
 		sprite.animation = "ded"
 		collision_shape.disabled = true
 		set_linear_velocity(Vector2(x,y))
-
+		self.get_child(0).rotation = atan2(y,x) + PI/2
 
 func _on_Area2D_body_entered(body):
 	if(body.get_child(0) is Sprite):
-		self.life += 5
-		delete_food(body.get_child(0).position.x, body.get_child(0).position.y)
-		SaveFile.save_data()
-		body.queue_free()
+		if sprite.animation != "ded":
+			self.life += 5
+			delete_food(body.get_child(0).position.x, body.get_child(0).position.y)
+			SaveFile.save_data()
+			body.queue_free()
 
 func delete_food(x, y):
 	var i = 0
