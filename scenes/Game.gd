@@ -26,7 +26,6 @@ func _ready():
 			self.hide_buttons()
 		else:
 			self.show_buttons()
-		
 
 func _on_ShopButton_pressed():
 	self.update_sea_monkeys()
@@ -209,6 +208,32 @@ func add_food(x, y):
 	FoodNode.add_child(CollisionShape2DNode)
 	
 	self.add_child(FoodNode)
+	
+func add_bubbles():
+	rng.randomize()
+	# Create Food nodes
+	var BubblesNode = RigidBody2D.new()
+	var AnimatedSpriteNode = AnimatedSprite.new()
+	var CollisionShape2DNode = CollisionShape2D.new()
+	
+	# Bubbles node configuration
+	BubblesNode.linear_velocity.y = -400
+	BubblesNode.position.x = rng.randf_range(30, 1050)
+	BubblesNode.position.y = 2000
+	BubblesNode.set_script(load("res://scenes/Bubbles.gd"))
+	
+	# Animated Sprite Node Configuration
+	AnimatedSpriteNode.frames = load("res://scenes/Bubbles.tres")
+	AnimatedSpriteNode.animation = "bubbles"
+	AnimatedSpriteNode.playing = true
+	AnimatedSpriteNode.scale.x = 0.186
+	AnimatedSpriteNode.scale.y = 0.186
+	
+	# Join all nodes
+	BubblesNode.add_child(AnimatedSpriteNode)
+	BubblesNode.add_child(CollisionShape2DNode)
+	
+	self.add_child(BubblesNode)
 
 func _on_Area2D_body_entered(body):
 	if(body.get_child(0) is Sprite):
@@ -251,3 +276,7 @@ func get_sea_monkeys_in_screen():
 		if child.is_in_group("Sea_monkeys"):
 			res.append(child)
 	return res
+
+
+func _on_BubbleTimer_timeout():
+	add_bubbles()

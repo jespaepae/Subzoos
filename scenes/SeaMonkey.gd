@@ -5,6 +5,7 @@ var rng = RandomNumberGenerator.new()
 onready var sprite = self.get_child(0)
 var life = -1
 var id = 0
+var money_label = Node
 var Game = load("res://scenes/Game.gd")
 onready var game_data = SaveFile.game_data
 
@@ -14,6 +15,7 @@ func _ready():
 	var timer = get_node("../SwimTimer")
 	var area2 = get_child(2)
 	var grow_up_timer = self.get_child(3)
+	money_label = get_node("../Money")
 	
 	timer.connect("timeout", self, "_on_SwimTimer_timeout")
 	area2.connect("body_entered", self, "_on_Area2D_body_entered")
@@ -96,7 +98,9 @@ func delete_sea_monkey():
 		game_data.sea_monkeys.remove(i)
 		
 func grow_up():
-	if (sprite.animation != "ded"):
+	if (sprite.animation != "ded" and sprite.animation != "display"):
+		game_data.money += 5
+		money_label.text = "%04d" % game_data.money
 		sprite.animation = "display"
 	
 func _on_GrowUpTimer_timeout():
