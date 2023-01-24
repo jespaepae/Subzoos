@@ -28,7 +28,33 @@ func load_data():
 				"resource":""
 			},
 			"sea_monkeys": [],
-			"foods": []
+			"foods": [],
+			"inventory_items": [ {
+				"type": "background",
+				"file": "res://assets/images/tank bgs/aquarium background.png",
+				"number": 1
+			},
+			{
+				"type": "background",
+				"file": "res://assets/images/tank bgs/aquarium background 2.png",
+				"number": 1
+			},
+			{
+				"type": "background",
+				"file": "res://assets/images/tank bgs/aquarium background 3.png",
+				"number": 1
+			},
+			{
+				"type": "background",
+				"file": "res://assets/images/tank bgs/aquarium background 4.png",
+				"number": 1
+			},
+			{
+				"type": "background",
+				"file": "res://assets/images/tank bgs/aquarium background 5.png",
+				"number": 1
+			},
+			]
 		}
 		save_data()
 	file.open(SAVE_FILE, File.READ)
