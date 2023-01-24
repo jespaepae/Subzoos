@@ -54,6 +54,41 @@ func load_data():
 				"file": "res://assets/images/tank bgs/aquarium background 5.png",
 				"number": 1
 			},
+			{
+				"type": "floor",
+				"file": "res://assets/images/tank floor/tank floor 1.png",
+				"number": 1
+			},
+			{
+				"type": "floor",
+				"file": "res://assets/images/tank floor/tank floor 2.png",
+				"number": 1
+			},
+			{
+				"type": "floor",
+				"file": "res://assets/images/tank floor/tank floor 3.png",
+				"number": 1
+			},
+			{
+				"type": "floor",
+				"file": "res://assets/images/tank floor/tank floor 4.png",
+				"number": 1
+			},
+			{
+				"type": "floor",
+				"file": "res://assets/images/tank floor/tank floor 5.png",
+				"number": 1
+			},
+			{
+				"type": "floor",
+				"file": "res://assets/images/tank floor/tank floor 6.png",
+				"number": 1
+			},
+			{
+				"type": "floor",
+				"file": "res://assets/images/tank floor/tank floor 7.png",
+				"number": 1
+			},
 			]
 		}
 		save_data()

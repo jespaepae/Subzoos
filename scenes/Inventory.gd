@@ -55,7 +55,7 @@ func change_to_scene(scene):
 func load_inventory_items():
 	var GridContainerNode = self.get_node("ScrollContainer/GridContainer")
 	for item in game_data.inventory_items:
-		if item.type == "background":
+		if item.number > 0:
 			# Create Nodes
 			var SlotNode = Panel.new()
 			var TextureButtonNode = TextureButton.new()
@@ -78,6 +78,7 @@ func load_inventory_items():
 			TextureButtonNode.rect_position.y = 95
 			TextureButtonNode.emit_signal("pressed")
 			TextureButtonNode.set_script(load("res://scenes/InventoryItem.gd"))
+			TextureButtonNode.item_type = item.type
 			
 			# LabelNode Configuration
 			LabelNode.align = HALIGN_RIGHT

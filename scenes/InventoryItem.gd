@@ -3,6 +3,7 @@ extends TextureButton
 onready var game_data = SaveFile.game_data
 onready var y_pressed = 0
 onready var y_released = 0
+var item_type
 
 func _ready():
 	var _button_pressed = self.connect("pressed", self, "_on_TextureButton_pressed")
@@ -24,8 +25,11 @@ func change_to_scene(scene):
 
 func _on_TextureButton_pressed():
 	if(self.has_pressed()):
-		game_data.background.name = self.texture_normal.get_path()
-		SaveFile.save_data()
-		change_to_scene("res://scenes/Game.tscn")
-	else:
-		print("scroll")
+		if(self.item_type == "background"):
+			game_data.background.name = self.texture_normal.get_path()
+			SaveFile.save_data()
+			change_to_scene("res://scenes/Game.tscn")
+		elif(self.item_type == "floor"):
+			game_data.background.floor = self.texture_normal.get_path()
+			SaveFile.save_data()
+			change_to_scene("res://scenes/Game.tscn")
