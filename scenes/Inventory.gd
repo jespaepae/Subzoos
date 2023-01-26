@@ -28,7 +28,7 @@ func set_font_size(label, size):
 	font.size = size
 
 func _on_FoodButton_pressed():
-	if(game_data.food > 0):
+	if(game_data.food > 0 and game_data.foods.size() < 10):
 		MusicController.play_ui_clic()
 		game_data.food -= 1
 		game_data.set_in_tank.resource = "food"
@@ -37,7 +37,7 @@ func _on_FoodButton_pressed():
 		self.change_to_scene("res://scenes/Game.tscn")
 		
 func _on_EggsButton_pressed():
-	if(game_data.eggs > 0):
+	if(game_data.eggs > 0 and game_data.sea_monkeys.size() < 10):
 		MusicController.play_ui_clic()
 		game_data.eggs -= 1
 		game_data.set_in_tank.resource = "baby"

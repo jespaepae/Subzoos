@@ -162,6 +162,7 @@ position = Vector2( 417, 983.068 )
 scale = Vector2( 0.186441, 0.186441 )
 frames = ExtResource( 7 )
 animation = "bubbles"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bubbles"]
