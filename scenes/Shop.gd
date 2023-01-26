@@ -11,12 +11,22 @@ func _ready():
 	self.set_font_size(SuppliesLabel, 60)
 	self.set_font_size(DecorLabel, 60)
 	
-
 func _on_BackButton_pressed():
 	MusicController.play_ui_clic()
-	if get_tree().change_scene("res://scenes/Game.tscn") != OK:
-		print ("An unexpected error occured when trying to switch to the Game scene")
+	self.change_to_scene("res://scenes/Game.tscn")
 
 func set_font_size(label, size):
 	var font = label.get_font("font")
 	font.size = size
+
+func _on_SuppliesButton_pressed():
+	MusicController.play_ui_clic()
+	self.change_to_scene("res://scenes/Pets.tscn")
+	
+func change_to_scene(scene):
+	if get_tree().change_scene(scene) != OK:
+		print ("An unexpected error occured when trying to switch to" + scene + "scene")
+
+func _on_DecorationButton_pressed():
+	MusicController.play_ui_clic()
+	self.change_to_scene("res://scenes/Decor.tscn")
