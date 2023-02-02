@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/images/menus and ui/shop bg.png" type="Texture" id=1]
 [ext_resource path="res://fonts/Sugar Snow.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/images/menus and ui/inventory banner.png" type="Texture" id=3]
+[ext_resource path="res://scenes/ScrollContainer.gd" type="Script" id=4]
 [ext_resource path="res://assets/images/menus and ui/back icon.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/menus and ui/shop banner.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/menus and ui/shellman.png" type="Texture" id=7]
@@ -18,12 +19,17 @@ onready var ShopTitle = $ShopTitle
 onready var game_data = SaveFile.game_data
 onready var EggsLabel = $EggsButton/EggsLabel
 onready var FoodLabel = $FoodButton/FoodLabel
+onready var BuyTitle = $BuyTitle
+onready var SellTitle = $SellTitle
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.set_font_size(ShopTitle, 160)
 	self.set_font_size(EggsLabel, 60)
 	self.set_font_size(FoodLabel, 60)
+	self.set_font_size(BuyTitle, 80)
+	self.set_font_size(SellTitle, 80)
+	self.load_sea_monkeys_to_sell()
 
 func set_font_size(label, size):
 	var font = label.get_font(\"font\")
@@ -33,20 +39,60 @@ func _on_BackButton_pressed():
 	MusicController.play_ui_clic()
 	self.change_to_scene(\"res://scenes/Shop.tscn\")
 	
-	
 func change_to_scene(scene):
 	if get_tree().change_scene(scene) != OK:
 		print (\"An unexpected error occured when trying to switch to\" + scene + \"scene\")
 
 func _on_EggsButton_pressed():
-	MusicController.play_ui_clic()
-	game_data.eggs += 1
-	SaveFile.save_data()
+	if(game_data.money >= 10):
+		MusicController.play_cling_sf()
+		game_data.eggs += 1
+		self.substract_money(10)
+		SaveFile.save_data()
 
 func _on_FoodButton_pressed():
-	MusicController.play_ui_clic()
-	game_data.food += 1
-	SaveFile.save_data()
+	if(game_data.money >= 5):
+		MusicController.play_cling_sf()
+		game_data.food += 1
+		self.substract_money(5)
+		SaveFile.save_data()
+	
+func load_sea_monkeys_to_sell():
+	var GridContainerNode = self.get_node(\"ScrollContainer/HBoxContainer\")
+	for sea_monkey in game_data.sea_monkeys:
+		if(sea_monkey.status != \"ded\"):
+			# Create Nodes
+			var SlotNode = Panel.new()
+			var TextureButtonNode = TextureButton.new()
+			
+			# SlotNode Configuration
+			SlotNode.rect_min_size.x = 300
+			SlotNode.rect_min_size.y = 300
+			SlotNode.margin_right = 300
+			SlotNode.margin_bottom = 300
+			SlotNode.get_stylebox(\"panel\",\"\").set_texture(load(\"res://assets/images/menus and ui/inventory slot.png\"))
+			
+			# TextureButtonNode Configuration
+			TextureButtonNode.expand = true
+			if(sea_monkey.status == \"baby\"):
+				TextureButtonNode.texture_normal = load(\"res://assets/images/baby subzoo anim/Timeline 1_0000.png\")
+			else:
+				TextureButtonNode.texture_normal = load(\"res://assets/images/sea_monkey/Timeline 1_0000.png\")
+			TextureButtonNode.rect_size.x = 200
+			TextureButtonNode.rect_size.y = 237
+			TextureButtonNode.rect_position.x = 50
+			TextureButtonNode.rect_position.y = 40
+			TextureButtonNode.emit_signal(\"pressed\")
+			TextureButtonNode.set_script(load(\"res://scenes/PetsSeaMonkeys.gd\"))
+			TextureButtonNode.subzoo_id = sea_monkey.id
+			TextureButtonNode.status = sea_monkey.status
+			
+			# Join all Nodes
+			SlotNode.add_child(TextureButtonNode)
+			GridContainerNode.add_child(SlotNode)
+		
+func substract_money(q):
+	game_data.money -= q
 "
 
 [sub_resource type="DynamicFont" id=1]
@@ -83,6 +129,24 @@ text = "SHOP"
 align = 1
 valign = 1
 
+[node name="BuyTitle" type="Label" parent="."]
+margin_top = 662.0
+margin_right = 1079.0
+margin_bottom = 877.0
+custom_fonts/font = SubResource( 1 )
+text = "BUY"
+align = 1
+valign = 1
+
+[node name="SellTitle" type="Label" parent="."]
+margin_top = 1241.0
+margin_right = 1079.0
+margin_bottom = 1456.0
+custom_fonts/font = SubResource( 1 )
+text = "SELL"
+align = 1
+valign = 1
+
 [node name="BackButton" type="TextureButton" parent="."]
 margin_left = 807.0
 margin_top = 1654.0
@@ -97,9 +161,9 @@ texture = ExtResource( 7 )
 
 [node name="EggsButton" type="TextureButton" parent="."]
 margin_left = 75.0
-margin_top = 778.0
+margin_top = 743.0
 margin_right = 525.0
-margin_bottom = 1262.0
+margin_bottom = 1227.0
 texture_normal = ExtResource( 8 )
 
 [node name="EggsLabel" type="Label" parent="EggsButton"]
@@ -112,9 +176,9 @@ text = "EGGS"
 
 [node name="FoodButton" type="TextureButton" parent="."]
 margin_left = 511.0
-margin_top = 762.0
+margin_top = 727.0
 margin_right = 988.0
-margin_bottom = 1257.0
+margin_bottom = 1222.0
 texture_normal = ExtResource( 9 )
 
 [node name="FoodLabel" type="Label" parent="FoodButton"]
@@ -124,6 +188,15 @@ margin_right = 257.0
 margin_bottom = 519.0
 custom_fonts/font = SubResource( 3 )
 text = "FOOD"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 32.0
+margin_top = 1436.0
+margin_right = 998.0
+margin_bottom = 1736.0
+script = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="EggsButton" to="." method="_on_EggsButton_pressed"]

@@ -9,6 +9,9 @@ var swipe_mouse_start
 var swipe_mouse_times = []
 var swipe_mouse_positions = []
 
+func _ready():
+	self.get_h_scrollbar().rect_scale.x = 0
+
 func _input(ev):
 	if ev is InputEventMouseButton:
 		if ev.pressed:
