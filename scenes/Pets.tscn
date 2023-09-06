@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/images/menus and ui/shop bg.png" type="Texture" id=1]
 [ext_resource path="res://fonts/Sugar Snow.ttf" type="DynamicFontData" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://assets/images/menus and ui/shellman.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/menus and ui/eggs icon.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/menus and ui/food icon.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/menus and ui/inventory slot - 2.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/menus and ui/inventory slot - 2 (green).png" type="Texture" id=11]
+[ext_resource path="res://assets/images/menus and ui/inventory slot - 2 (red).png" type="Texture" id=12]
+[ext_resource path="res://assets/images/menus and ui/coin.png" type="Texture" id=13]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Node
@@ -17,10 +21,13 @@ script/source = "extends Node
 # Declare member variables here. Examples:
 onready var ShopTitle = $ShopTitle
 onready var game_data = SaveFile.game_data
+onready var EggsButton = $EggsButton
+onready var FoodButton = $FoodButton
 onready var EggsLabel = $EggsButton/EggsLabel
 onready var FoodLabel = $FoodButton/FoodLabel
 onready var BuyTitle = $BuyTitle
 onready var SellTitle = $SellTitle
+onready var shop_item
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,30 +39,30 @@ func _ready():
 	self.load_sea_monkeys_to_sell()
 
 func set_font_size(label, size):
-	var font = label.get_font(\"font\")
-	font.size = size
+	var dynamic_font = DynamicFont.new()
+	dynamic_font.font_data = load(\"res://fonts/Sugar Snow.ttf\")
+	dynamic_font.size = size
+	label.add_font_override(\"font\", dynamic_font)
 
 func _on_BackButton_pressed():
-	MusicController.play_ui_clic()
-	self.change_to_scene(\"res://scenes/Shop.tscn\")
+	var PopUpSprite = self.get_node_or_null(\"PopUpSprite\")
+	if(!is_instance_valid(PopUpSprite)):
+		MusicController.play_ui_clic()
+		self.change_to_scene(\"res://scenes/Shop.tscn\")
 	
 func change_to_scene(scene):
 	if get_tree().change_scene(scene) != OK:
 		print (\"An unexpected error occured when trying to switch to\" + scene + \"scene\")
 
 func _on_EggsButton_pressed():
-	if(game_data.money >= 10):
-		MusicController.play_cling_sf()
-		game_data.eggs += 1
-		self.substract_money(10)
-		SaveFile.save_data()
+	var PopUpSprite = self.get_node_or_null(\"PopUpSprite\")
+	if(!is_instance_valid(PopUpSprite)):
+		pop_up(EggsButton.texture_normal.get_path())
 
 func _on_FoodButton_pressed():
-	if(game_data.money >= 5):
-		MusicController.play_cling_sf()
-		game_data.food += 1
-		self.substract_money(5)
-		SaveFile.save_data()
+	var PopUpSprite = self.get_node_or_null(\"PopUpSprite\")
+	if(!is_instance_valid(PopUpSprite)):
+		pop_up(FoodButton.texture_normal.get_path())
 	
 func load_sea_monkeys_to_sell():
 	var GridContainerNode = self.get_node(\"ScrollContainer/HBoxContainer\")
@@ -90,6 +97,166 @@ func load_sea_monkeys_to_sell():
 			# Join all Nodes
 			SlotNode.add_child(TextureButtonNode)
 			GridContainerNode.add_child(SlotNode)
+			
+func pop_up(item_file):
+	# Create Nodes
+	var PopUpSprite = Sprite.new()
+	var ItemSprite = Sprite.new()
+	var CoinSprite = Sprite.new()
+	var BuyTextureButton = TextureButton.new()
+	var CancelTextureButton = TextureButton.new()
+	var BuyLabel = Label.new()
+	var MoneyLabel = Label.new()
+	var CancelLabel = Label.new()
+	var ItemLabel = Label.new()
+	var DescriptionLabel = Label.new()
+	var dynamic_font = DynamicFont.new()
+	
+	for item in game_data.shop_items:
+		if item.file == item_file:
+			shop_item = item
+			break;
+			
+	# PopUpSprite Configuration
+	PopUpSprite.name = \"PopUpSprite\"
+	PopUpSprite.texture = load(\"res://assets/images/menus and ui/inventory slot - 2.png\")
+	PopUpSprite.modulate.a = 0.85
+	PopUpSprite.position.x = 554
+	PopUpSprite.position.y = 1206.719
+	PopUpSprite.scale.x = 2.347
+	PopUpSprite.scale.y = 2.578
+	
+	# ItemSprite Configuration
+	ItemSprite.texture = load(shop_item.file)
+	ItemSprite.position.x = -100.538
+	ItemSprite.position.y = -97.645
+	ItemSprite.scale.x = 0.302
+	ItemSprite.scale.y = 0.303
+	
+	# CoinSprite Configuration
+	CoinSprite.texture = load(\"res://assets/images/menus and ui/coin.png\")
+	CoinSprite.position.x = -152.808
+	CoinSprite.position.y = 292.08
+	CoinSprite.scale.x = 0.956
+	CoinSprite.scale.y = 0.953
+	
+	# BuyTextureButton Configuration
+	BuyTextureButton.expand = true
+	BuyTextureButton.texture_normal = load(\"res://assets/images/menus and ui/inventory slot - 2 (green).png\")
+	BuyTextureButton.margin_left = -172
+	BuyTextureButton.margin_top = 17
+	BuyTextureButton.margin_right = 165
+	BuyTextureButton.margin_bottom = 95
+	BuyTextureButton.rect_position.x = -172.96
+	BuyTextureButton.rect_position.y = 17.572
+	BuyTextureButton.rect_size.x = 338
+	BuyTextureButton.rect_size.y = 78
+	BuyTextureButton.rect_pivot_offset.x = 200.225
+	BuyTextureButton.rect_pivot_offset.y = 38.964
+	BuyTextureButton.emit_signal(\"pressed\")
+	BuyTextureButton.set_script(load(\"res://scenes/ShopItem.gd\"))
+	
+	# CancelTextureButton Configuration
+	CancelTextureButton.expand = true
+	CancelTextureButton.texture_normal = load(\"res://assets/images/menus and ui/inventory slot - 2 (red).png\")
+	CancelTextureButton.margin_left = -172
+	CancelTextureButton.margin_top = 97
+	CancelTextureButton.margin_right = 165
+	CancelTextureButton.margin_bottom = 175
+	CancelTextureButton.rect_position.x = -172.96
+	CancelTextureButton.rect_position.y = 97.072
+	CancelTextureButton.rect_size.x = 338
+	CancelTextureButton.rect_size.y = 78
+	CancelTextureButton.rect_pivot_offset.x = 200.225
+	CancelTextureButton.rect_pivot_offset.y = 38.964
+	CancelTextureButton.emit_signal(\"pressed\")
+	CancelTextureButton.set_script(load(\"res://scenes/ShopItem.gd\"))
+	
+	# BuyLabel Configuration
+	BuyLabel.text = \"Buy\"
+	BuyLabel.align = Label.ALIGN_CENTER
+	BuyLabel.valign = Label.VALIGN_CENTER
+	BuyLabel.margin_left = 0
+	BuyLabel.margin_top = 0
+	BuyLabel.margin_right = 334
+	BuyLabel.margin_bottom = 76
+	BuyLabel.rect_position.x = 0
+	BuyLabel.rect_position.y = 0
+	BuyLabel.rect_size.x = 334
+	BuyLabel.rect_size.y = 76
+	dynamic_font.font_data = load(\"res://fonts/Sugar Snow.ttf\")
+	dynamic_font.size = 35
+	BuyLabel.add_font_override(\"font\", dynamic_font)
+	
+	# CancelLabel Configuration
+	CancelLabel.text = \"Cancel\"
+	CancelLabel.align = Label.ALIGN_CENTER
+	CancelLabel.valign = Label.VALIGN_CENTER
+	CancelLabel.margin_left = 0
+	CancelLabel.margin_top = 0
+	CancelLabel.margin_right = 334
+	CancelLabel.margin_bottom = 76
+	CancelLabel.rect_position.x = 0
+	CancelLabel.rect_position.y = 0
+	CancelLabel.rect_size.x = 334
+	CancelLabel.rect_size.y = 76
+	dynamic_font.font_data = load(\"res://fonts/Sugar Snow.ttf\")
+	dynamic_font.size = 35
+	CancelLabel.add_font_override(\"font\", dynamic_font)
+	
+	# ItemLabel Configuration
+	ItemLabel.text = shop_item.name
+	ItemLabel.align = Label.ALIGN_CENTER
+	ItemLabel.valign = Label.VALIGN_CENTER
+	ItemLabel.autowrap = true
+	ItemLabel.margin_left = -80
+	ItemLabel.margin_top = -203
+	ItemLabel.margin_right = 100
+	ItemLabel.margin_bottom = -153
+	ItemLabel.rect_position.x = -85.516
+	ItemLabel.rect_position.y = -213.933
+	ItemLabel.rect_size.x = 181
+	ItemLabel.rect_size.y = 50
+	self.set_font_size(ItemLabel, 35)
+	
+	# DescriptionLabel Configuration
+	DescriptionLabel.text = shop_item.description
+	DescriptionLabel.autowrap = true
+	DescriptionLabel.margin_left = -17
+	DescriptionLabel.margin_top = -136
+	DescriptionLabel.margin_right = 165
+	DescriptionLabel.margin_bottom = 3
+	DescriptionLabel.rect_position.x = -17
+	DescriptionLabel.rect_position.y = -136
+	DescriptionLabel.rect_size.x = 182
+	DescriptionLabel.rect_size.y = 139
+	self.set_font_size(DescriptionLabel, 20)
+	
+	# MoneyLabel Configuration
+	MoneyLabel.text = \"%03d\" % shop_item.price
+	MoneyLabel.valign = Label.VALIGN_CENTER
+	MoneyLabel.margin_left = -56
+	MoneyLabel.margin_top = 249
+	MoneyLabel.margin_right = 177
+	MoneyLabel.margin_bottom = 352
+	MoneyLabel.rect_position.x = -56.465
+	MoneyLabel.rect_position.y = 249.804
+	MoneyLabel.rect_size.x = 234
+	MoneyLabel.rect_size.y = 103
+	self.set_font_size(MoneyLabel, 100)
+	
+	# Join all Nodes
+	ItemSprite.add_child(CoinSprite)
+	ItemSprite.add_child(MoneyLabel)
+	BuyTextureButton.add_child(BuyLabel)
+	PopUpSprite.add_child(BuyTextureButton)
+	CancelTextureButton.add_child(CancelLabel)
+	PopUpSprite.add_child(CancelTextureButton)
+	PopUpSprite.add_child(ItemSprite)
+	PopUpSprite.add_child(ItemLabel)
+	PopUpSprite.add_child(DescriptionLabel)
+	self.add_child(PopUpSprite)
+	
 		
 func substract_money(q):
 	game_data.money -= q
@@ -197,6 +364,81 @@ margin_bottom = 1736.0
 script = ExtResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+
+[node name="PopUpSpritePrueba" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.917647 )
+position = Vector2( 554, 1206.72 )
+scale = Vector2( 2.34736, 2.5779 )
+texture = ExtResource( 10 )
+
+[node name="BuyTextureButton" type="TextureButton" parent="PopUpSpritePrueba"]
+margin_left = -172.96
+margin_top = 17.5719
+margin_right = 165.04
+margin_bottom = 95.5719
+rect_pivot_offset = Vector2( 200.225, 38.9638 )
+texture_normal = ExtResource( 11 )
+expand = true
+
+[node name="BuyLabel" type="Label" parent="PopUpSpritePrueba/BuyTextureButton"]
+margin_right = 334.0
+margin_bottom = 76.0
+text = "Buy"
+align = 1
+valign = 1
+
+[node name="ItemSprite" type="Sprite" parent="PopUpSpritePrueba"]
+position = Vector2( -100.538, -97.6449 )
+scale = Vector2( 0.301794, 0.302807 )
+texture = ExtResource( 8 )
+
+[node name="CoinSprite" type="Sprite" parent="PopUpSpritePrueba/ItemSprite"]
+position = Vector2( -138.338, 292.079 )
+scale = Vector2( 0.956153, 0.952954 )
+texture = ExtResource( 13 )
+
+[node name="MoneyLabel" type="Label" parent="PopUpSpritePrueba/ItemSprite"]
+margin_left = -56.4653
+margin_top = 249.804
+margin_right = 177.535
+margin_bottom = 352.804
+text = "005"
+valign = 1
+
+[node name="CancelTextureButton" type="TextureButton" parent="PopUpSpritePrueba"]
+margin_left = -173.812
+margin_top = 97.0275
+margin_right = 164.188
+margin_bottom = 175.027
+rect_pivot_offset = Vector2( 200.225, 38.9638 )
+texture_normal = ExtResource( 12 )
+expand = true
+
+[node name="CancelLabel" type="Label" parent="PopUpSpritePrueba/CancelTextureButton"]
+margin_left = 145.695
+margin_top = 33.4202
+margin_right = 187.695
+margin_bottom = 61.4202
+text = "Cancel"
+
+[node name="ItemLabel" type="Label" parent="PopUpSpritePrueba"]
+margin_left = -80.516
+margin_top = -203.933
+margin_right = 100.484
+margin_bottom = -153.933
+text = "Eggs"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="DescriptionLabel" type="Label" parent="PopUpSpritePrueba"]
+margin_left = -17.0
+margin_top = -136.0
+margin_right = 165.0
+margin_bottom = 3.0
+text = "Eggs that  sdgchkfsd vfvhbsfhjv srvbhf fvsgfruhv vuhriudh"
+autowrap = true
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="EggsButton" to="." method="_on_EggsButton_pressed"]

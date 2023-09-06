@@ -89,7 +89,20 @@ func load_data():
 				"file": "res://assets/images/tank floor/tank floor 7.png",
 				"number": 1
 			},
-			]
+			],
+			"shop_items": [ {
+				"name": "Egg",
+				"description": "This is the description for the 'Egg' Item",
+				"price": 10,
+				"file": "res://assets/images/menus and ui/eggs icon.png"
+			},
+			{
+				"name": "Food",
+				"description": "This is the description for the 'Food' Item (I'm so creative xd)",
+				"price": 5,
+				"file": "res://assets/images/menus and ui/food icon.png"
+			},
+			],
 		}
 		save_data()
 	file.open(SAVE_FILE, File.READ)
