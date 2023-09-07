@@ -1,14 +1,53 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://assets/images/menus and ui/shop bg.png" type="Texture" id=1]
 [ext_resource path="res://fonts/Sugar Snow.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/images/menus and ui/inventory banner.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Decor.gd" type="Script" id=4]
 [ext_resource path="res://assets/images/menus and ui/back icon.png" type="Texture" id=5]
-[ext_resource path="res://assets/images/menus and ui/shop banner.png" type="Texture" id=6]
-[ext_resource path="res://assets/images/menus and ui/shellman.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/tank decor/plant 2.png" type="Texture" id=6]
+[ext_resource path="res://scenes/DecorShopItem.gd" type="Script" id=7]
+[ext_resource path="res://assets/images/menus and ui/inventory slot.png" type="Texture" id=8]
+[ext_resource path="res://scenes/ScrollContainer.gd" type="Script" id=9]
+[ext_resource path="res://assets/images/menus and ui/inventory slot - 2.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/tank decor/plant 3.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/tank decor/plant 4.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/tank decor/plant 5.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/tank decor/rock 5.png" type="Texture" id=14]
+[ext_resource path="res://assets/images/tank decor/rock 2.png" type="Texture" id=15]
+[ext_resource path="res://assets/images/tank decor/rock 4.png" type="Texture" id=16]
+[ext_resource path="res://assets/images/tank decor/rock 3.png" type="Texture" id=17]
+[ext_resource path="res://assets/images/tank decor/rock 1.png" type="Texture" id=18]
+[ext_resource path="res://assets/images/tank decor/artificial 4.png" type="Texture" id=19]
+[ext_resource path="res://assets/images/tank decor/artificial 3.png" type="Texture" id=20]
+[ext_resource path="res://assets/images/tank decor/artificial 2.png" type="Texture" id=21]
+[ext_resource path="res://assets/images/tank decor/artificial 1.png" type="Texture" id=22]
+[ext_resource path="res://assets/images/tank decor/artificial 5.png" type="Texture" id=23]
+[ext_resource path="res://assets/images/tank decor/coral 4.png" type="Texture" id=24]
+[ext_resource path="res://assets/images/tank decor/coral 5.png" type="Texture" id=25]
+[ext_resource path="res://assets/images/tank decor/coral 1.png" type="Texture" id=26]
+[ext_resource path="res://assets/images/tank decor/coral 3.png" type="Texture" id=27]
+[ext_resource path="res://assets/images/tank decor/coral 2.png" type="Texture" id=28]
+[ext_resource path="res://assets/images/tank decor/hawaiian 4.png" type="Texture" id=29]
+[ext_resource path="res://assets/images/tank decor/hawaiian 3.png" type="Texture" id=30]
+[ext_resource path="res://assets/images/tank decor/hawaiian 2.png" type="Texture" id=31]
+[ext_resource path="res://assets/images/tank decor/hawaiian 5.png" type="Texture" id=32]
+[ext_resource path="res://assets/images/tank decor/hawaiian 1.png" type="Texture" id=33]
+[ext_resource path="res://assets/images/tank decor/space 2.png" type="Texture" id=34]
+[ext_resource path="res://assets/images/tank decor/space 3.png" type="Texture" id=35]
+[ext_resource path="res://assets/images/tank decor/space 5.png" type="Texture" id=36]
+[ext_resource path="res://assets/images/tank decor/space 1.png" type="Texture" id=37]
+[ext_resource path="res://assets/images/tank decor/space 4.png" type="Texture" id=38]
 
 [sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 491, 487 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 56
 font_data = ExtResource( 2 )
 
 [node name="Node" type="Node"]
@@ -23,18 +62,634 @@ margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 3 )
 
-[node name="ShopBanner" type="Sprite" parent="."]
-position = Vector2( 538, 1018 )
-scale = Vector2( 1.00093, 1 )
-texture = ExtResource( 6 )
-
 [node name="ShopTitle" type="Label" parent="."]
 margin_right = 1080.0
 margin_bottom = 215.0
 custom_fonts/font = SubResource( 1 )
-text = "SHOP"
+text = "DECOR"
 align = 1
 valign = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_top = 0.163
+anchor_bottom = 0.163
+margin_top = 125.04
+margin_right = 1080.0
+margin_bottom = 1607.04
+script = ExtResource( 9 )
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+margin_right = 1068.0
+margin_bottom = 4824.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 100
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/GridContainer"]
+margin_right = 1058.0
+margin_bottom = 704.0
+columns = 3
+
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+margin_right = 350.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel6"]
+margin_left = 58.0
+margin_top = 11.0
+margin_right = 300.0
+margin_bottom = 342.0
+texture_normal = ExtResource( 6 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel7"]
+margin_left = 60.0
+margin_top = 4.0
+margin_right = 317.0
+margin_bottom = 355.0
+texture_normal = ExtResource( 11 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+margin_left = 708.0
+margin_right = 1058.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel8"]
+margin_left = 51.0
+margin_top = -17.0
+margin_right = 308.0
+margin_bottom = 334.0
+texture_normal = ExtResource( 12 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+margin_top = 354.0
+margin_right = 350.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel9"]
+margin_left = 113.0
+margin_top = -3.0
+margin_right = 236.0
+margin_bottom = 349.0
+texture_normal = ExtResource( 13 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="ScrollContainer/GridContainer"]
+self_modulate = Color( 1, 1, 1, 0.737255 )
+position = Vector2( -3092, 704 )
+scale = Vector2( 14.674, 0.2 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite"]
+margin_left = 221.0
+margin_top = 15.0
+margin_right = 1087.0
+margin_bottom = 103.0
+rect_scale = Vector2( 0.068, 5 )
+custom_fonts/font = SubResource( 3 )
+text = "Plant Set"
+valign = 1
+
+[node name="GridContainer2" type="GridContainer" parent="ScrollContainer/GridContainer"]
+margin_top = 804.0
+margin_right = 1058.0
+margin_bottom = 1508.0
+columns = 3
+
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+margin_right = 350.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel6"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 15 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel7"]
+margin_left = 86.0
+margin_top = 150.0
+margin_right = 261.0
+margin_bottom = 311.0
+texture_normal = ExtResource( 18 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+margin_left = 708.0
+margin_right = 1058.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel8"]
+margin_left = 39.0
+margin_top = 72.0
+margin_right = 298.0
+margin_bottom = 304.0
+texture_normal = ExtResource( 17 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+margin_top = 354.0
+margin_right = 350.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel9"]
+margin_left = 81.0
+margin_top = 156.0
+margin_right = 264.0
+margin_bottom = 305.0
+texture_normal = ExtResource( 16 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+margin_left = 354.0
+margin_top = 354.0
+margin_right = 704.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel10"]
+margin_left = 41.0
+margin_top = 35.0
+margin_right = 316.0
+margin_bottom = 316.0
+texture_normal = ExtResource( 14 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="ScrollContainer/GridContainer"]
+self_modulate = Color( 1, 1, 1, 0.737255 )
+position = Vector2( -3092, 1505.4 )
+scale = Vector2( 14.674, 0.2 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite2"]
+margin_left = 221.0
+margin_top = 15.0
+margin_right = 1087.0
+margin_bottom = 103.0
+rect_scale = Vector2( 0.068, 5 )
+custom_fonts/font = SubResource( 3 )
+text = "Rock Set"
+valign = 1
+
+[node name="GridContainer3" type="GridContainer" parent="ScrollContainer/GridContainer"]
+margin_top = 1608.0
+margin_right = 1058.0
+margin_bottom = 2312.0
+columns = 3
+
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+margin_right = 350.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel6"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 22 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel7"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 21 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+margin_left = 708.0
+margin_right = 1058.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel8"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 20 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+margin_top = 354.0
+margin_right = 350.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel9"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 19 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+margin_left = 354.0
+margin_top = 354.0
+margin_right = 704.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel10"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 23 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="ScrollContainer/GridContainer"]
+self_modulate = Color( 1, 1, 1, 0.737255 )
+position = Vector2( -3092, 2312 )
+scale = Vector2( 14.674, 0.2 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite3"]
+margin_left = 221.0
+margin_top = 15.0
+margin_right = 1087.0
+margin_bottom = 103.0
+rect_scale = Vector2( 0.068, 5 )
+custom_fonts/font = SubResource( 3 )
+text = "Artificial Set"
+valign = 1
+
+[node name="GridContainer4" type="GridContainer" parent="ScrollContainer/GridContainer"]
+margin_top = 2412.0
+margin_right = 1058.0
+margin_bottom = 3116.0
+columns = 3
+
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+margin_right = 350.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel6"]
+margin_left = 73.0
+margin_top = 68.0
+margin_right = 264.0
+margin_bottom = 267.0
+texture_normal = ExtResource( 26 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel7"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 28 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+margin_left = 708.0
+margin_right = 1058.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel8"]
+margin_left = 51.0
+margin_top = 73.0
+margin_right = 278.0
+margin_bottom = 257.0
+texture_normal = ExtResource( 27 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+margin_top = 354.0
+margin_right = 350.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel9"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 24 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+margin_left = 354.0
+margin_top = 354.0
+margin_right = 704.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel10"]
+margin_left = 34.0
+margin_top = 53.0
+margin_right = 318.0
+margin_bottom = 271.0
+texture_normal = ExtResource( 25 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="ScrollContainer/GridContainer"]
+self_modulate = Color( 1, 1, 1, 0.737255 )
+position = Vector2( -3092, 3116 )
+scale = Vector2( 14.674, 0.2 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite4"]
+margin_left = 221.0
+margin_top = 15.0
+margin_right = 1087.0
+margin_bottom = 103.0
+rect_scale = Vector2( 0.068, 5 )
+custom_fonts/font = SubResource( 3 )
+text = "Coral Set"
+valign = 1
+
+[node name="GridContainer5" type="GridContainer" parent="ScrollContainer/GridContainer"]
+margin_top = 3216.0
+margin_right = 1058.0
+margin_bottom = 3920.0
+columns = 3
+
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+margin_right = 350.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel6"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 33 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel7"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 31 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+margin_left = 708.0
+margin_right = 1058.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel8"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 30 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+margin_top = 354.0
+margin_right = 350.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel9"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 29 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+margin_left = 354.0
+margin_top = 354.0
+margin_right = 704.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel10"]
+margin_left = 60.0
+margin_top = 14.0
+margin_right = 276.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 32 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Sprite5" type="Sprite" parent="ScrollContainer/GridContainer"]
+self_modulate = Color( 1, 1, 1, 0.737255 )
+position = Vector2( -3092, 3920 )
+scale = Vector2( 14.674, 0.2 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite5"]
+margin_left = 221.0
+margin_top = 15.0
+margin_right = 1087.0
+margin_bottom = 103.0
+rect_scale = Vector2( 0.068, 5 )
+custom_fonts/font = SubResource( 3 )
+text = "Hawaiian Set"
+valign = 1
+
+[node name="GridContainer6" type="GridContainer" parent="ScrollContainer/GridContainer"]
+margin_top = 4020.0
+margin_right = 1058.0
+margin_bottom = 4724.0
+columns = 3
+
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+margin_right = 350.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel6"]
+margin_left = 80.0
+margin_top = 14.0
+margin_right = 287.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 37 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel7"]
+margin_left = 95.0
+margin_top = 14.0
+margin_right = 279.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 34 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+margin_left = 708.0
+margin_right = 1058.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel8"]
+margin_left = 133.0
+margin_top = 14.0
+margin_right = 266.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 35 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+margin_top = 354.0
+margin_right = 350.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel9"]
+margin_left = 107.0
+margin_top = 14.0
+margin_right = 261.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 38 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+margin_left = 354.0
+margin_top = 354.0
+margin_right = 704.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel10"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 318.0
+margin_bottom = 310.0
+texture_normal = ExtResource( 36 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="Sprite6" type="Sprite" parent="ScrollContainer/GridContainer"]
+self_modulate = Color( 1, 1, 1, 0.737255 )
+position = Vector2( -3092, 4724 )
+scale = Vector2( 14.674, 0.2 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite6"]
+margin_left = 221.0
+margin_top = 15.0
+margin_right = 1087.0
+margin_bottom = 103.0
+rect_scale = Vector2( 0.068, 5 )
+custom_fonts/font = SubResource( 3 )
+text = "Space Set"
+valign = 1
+
+[node name="GridContainer7" type="GridContainer" parent="ScrollContainer/GridContainer"]
+margin_top = 4824.0
+margin_right = 1058.0
+margin_bottom = 4824.0
+columns = 3
 
 [node name="BackButton" type="TextureButton" parent="."]
 margin_left = 807.0
@@ -42,10 +697,5 @@ margin_top = 1654.0
 margin_right = 1080.0
 margin_bottom = 1920.0
 texture_normal = ExtResource( 5 )
-
-[node name="Shellman" type="Sprite" parent="."]
-position = Vector2( 265, 438 )
-scale = Vector2( 0.231056, 0.231056 )
-texture = ExtResource( 7 )
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

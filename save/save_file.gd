@@ -89,6 +89,246 @@ func load_data():
 				"file": "res://assets/images/tank floor/tank floor 7.png",
 				"number": 1
 			},
+			{
+				"name": "Artificial 1",
+				"description": "This is the description for 'Artificial 1'",
+				"price": 10,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/artificial 1.png",
+				"number": 0
+			},
+			{
+				"name": "Artificial 2",
+				"description": "This is the description for 'Artificial 2'",
+				"price": 15,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/artificial 2.png",
+				"number": 0
+			},
+			{
+				"name": "Artificial 3",
+				"description": "This is the description for 'Artificial 3'",
+				"price": 17,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/artificial 3.png",
+				"number": 0
+			},
+			{
+				"name": "Artificial 4",
+				"description": "This is the description for 'Artificial 4'",
+				"price": 20,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/artificial 4.png",
+				"number": 0
+			},
+			{
+				"name": "Artificial 5",
+				"description": "This is the description for 'Artificial 5'",
+				"price": 25,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/artificial 5.png",
+				"number": 0
+			},
+			{
+				"name": "Coral 1",
+				"description": "This is the description for 'Coral 1'",
+				"price": 10,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/coral 1.png",
+				"number": 0
+			},
+			{
+				"name": "Coral 2",
+				"description": "This is the description for 'Coral 2'",
+				"price": 15,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/coral 2.png",
+				"number": 0
+			},
+			{
+				"name": "Coral 3",
+				"description": "This is the description for 'Coral 3'",
+				"price": 20,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/coral 3.png",
+				"number": 0
+			},
+			{
+				"name": "Coral 4",
+				"description": "This is the description for 'Coral 4'",
+				"price": 25,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/coral 4.png",
+				"number": 0
+			},
+			{
+				"name": "Coral 5",
+				"description": "This is the description for 'Coral 5'",
+				"price": 30,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/coral 5.png",
+				"number": 0
+			},
+			{
+				"name": "Hawaiian 1",
+				"description": "This is the description for 'Hawaiian 1'",
+				"price": 20,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/hawaiian 1.png",
+				"number": 0
+			},
+			{
+				"name": "Hawaiian 2",
+				"description": "This is the description for 'Hawaiian 2'",
+				"price": 30,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/hawaiian 2.png",
+				"number": 0
+			},
+			{
+				"name": "Hawaiian 3",
+				"description": "This is the description for 'Hawaiian 3'",
+				"price": 40,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/hawaiian 3.png",
+				"number": 0
+			},
+			{
+				"name": "Hawaiian 4",
+				"description": "This is the description for 'Hawaiian 4'",
+				"price": 50,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/hawaiian 4.png",
+				"number": 0
+			},
+			{
+				"name": "Hawaiian 5",
+				"description": "This is the description for 'Hawaiian 5'",
+				"price": 75,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/hawaiian 5.png",
+				"number": 0
+			},
+			{
+				"name": "Plant 2",
+				"description": "This is the description for 'Plant 2'",
+				"price": 5,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/plant 2.png",
+				"number": 0
+			},
+			{
+				"name": "Plant 3",
+				"description": "This is the description for 'Plant 3'",
+				"price": 7,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/plant 3.png",
+				"number": 0
+			},
+			{
+				"name": "Plant 4",
+				"description": "This is the description for 'Plant 4'",
+				"price": 8,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/plant 4.png",
+				"number": 0
+			},
+			{
+				"name": "Plant 5",
+				"description": "This is the description for 'Plant 5'",
+				"price": 10,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/plant 5.png",
+				"number": 0
+			},
+			{
+				"name": "Rock 1",
+				"description": "This is the description for 'Rock 1'",
+				"price": 10,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/rock 1.png",
+				"number": 0
+			},
+			{
+				"name": "Rock 2",
+				"description": "This is the description for 'Rock 2'",
+				"price": 8,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/rock 2.png",
+				"number": 0
+			},
+			{
+				"name": "Rock 3",
+				"description": "This is the description for 'Rock 3'",
+				"price": 6,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/rock 3.png",
+				"number": 0
+			},
+			{
+				"name": "Rock 4",
+				"description": "This is the description for 'Rock 4'",
+				"price": 14,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/rock 4.png",
+				"number": 0
+			},
+			{
+				"name": "Rock 5",
+				"description": "This is the description for 'Rock 5'",
+				"price": 16,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/rock 5.png",
+				"number": 0
+			},
+			{
+				"name": "Space 1",
+				"description": "This is the description for 'Space 1'",
+				"price": 100,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/space 1.png",
+				"number": 0
+			},
+			{
+				"name": "Space 2",
+				"description": "This is the description for 'Space 2'",
+				"price": 125,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/space 2.png",
+				"number": 0
+			},
+			{
+				"name": "Space 3",
+				"description": "This is the description for 'Space 3'",
+				"price": 175,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/space 3.png",
+				"number": 0
+			},
+			{
+				"name": "Space 4",
+				"description": "This is the description for 'Space 4'",
+				"price": 250,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/space 4.png",
+				"number": 0
+			},
+			{
+				"name": "Space 5",
+				"description": "This is the description for 'Space 5'",
+				"price": 300,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/space 5.png",
+				"number": 0
+			},
+			{
+				"name": "Z Golden Statue",
+				"description": "This is the description for 'Z Golden Statue'",
+				"price": 1000,
+				"type": "decor",
+				"file": "res://assets/images/tank decor/z golden statue.png",
+				"number": 0
+			},
 			],
 			"shop_items": [ {
 				"name": "Egg",

@@ -39,18 +39,7 @@ func _on_TextureButton_pressed():
 					self.substract_money(shop_item.price)
 					SaveFile.save_data()
 				else:
-					MusicController.play_cling_sf()
-					shop_item.number += 1
-					var i = 0
-					for item in game_data.inventory_items:
-						if(item.file == shop_item.file):
-							break;
-						i += 1
-					if i < game_data.inventory_items.size():
-						game_data.inventory_items.remove(i)
-					game_data.inventory_items.append(shop_item)
-					self.substract_money(shop_item.price)
-					SaveFile.save_data()
+					pass
 		elif(self.get_child(0).text == "Cancel"):
 			MusicController.play_ui_clic()
 			self.get_parent().queue_free()
