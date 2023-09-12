@@ -33,3 +33,19 @@ func _on_TextureButton_pressed():
 			game_data.background.floor = self.texture_normal.get_path()
 			SaveFile.save_data()
 			change_to_scene("res://scenes/Game.tscn")
+		elif(self.item_type == "decor"):
+			var i = 0
+			var this_item
+			for item in game_data.inventory_items:
+				if item.file == self.texture_normal.get_path():
+					this_item = item
+					this_item.number -= 1
+					break;
+				i += 1
+			if i < game_data.inventory_items.size():
+				game_data.inventory_items.remove(i)
+			game_data.inventory_items.append(this_item)
+			game_data.set_in_tank.status = 1
+			game_data.set_in_tank.resource = this_item.file
+			SaveFile.save_data()
+			change_to_scene("res://scenes/Game.tscn")

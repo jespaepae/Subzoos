@@ -393,19 +393,6 @@ position = Vector2( -100.538, -97.6449 )
 scale = Vector2( 0.301794, 0.302807 )
 texture = ExtResource( 8 )
 
-[node name="CoinSprite" type="Sprite" parent="PopUpSpritePrueba/ItemSprite"]
-position = Vector2( -138.338, 292.079 )
-scale = Vector2( 0.956153, 0.952954 )
-texture = ExtResource( 13 )
-
-[node name="MoneyLabel" type="Label" parent="PopUpSpritePrueba/ItemSprite"]
-margin_left = -56.4653
-margin_top = 249.804
-margin_right = 177.535
-margin_bottom = 352.804
-text = "005"
-valign = 1
-
 [node name="CancelTextureButton" type="TextureButton" parent="PopUpSpritePrueba"]
 margin_left = -173.812
 margin_top = 97.0275
@@ -423,10 +410,10 @@ margin_bottom = 61.4202
 text = "Cancel"
 
 [node name="ItemLabel" type="Label" parent="PopUpSpritePrueba"]
-margin_left = -80.516
-margin_top = -203.933
-margin_right = 100.484
-margin_bottom = -153.933
+margin_left = -89.0
+margin_top = -212.0
+margin_right = 115.0
+margin_bottom = -154.0
 text = "Eggs"
 align = 1
 valign = 1
@@ -439,6 +426,19 @@ margin_right = 165.0
 margin_bottom = 3.0
 text = "Eggs that  sdgchkfsd vfvhbsfhjv srvbhf fvsgfruhv vuhriudh"
 autowrap = true
+
+[node name="CoinSprite" type="Sprite" parent="PopUpSpritePrueba"]
+position = Vector2( -142.288, -9.20132 )
+scale = Vector2( 0.288561, 0.288561 )
+texture = ExtResource( 13 )
+
+[node name="MoneyLabel" type="Label" parent="PopUpSpritePrueba/CoinSprite"]
+margin_left = 94.485
+margin_top = -55.1161
+margin_right = 328.485
+margin_bottom = 47.8839
+text = "005"
+valign = 1
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="EggsButton" to="." method="_on_EggsButton_pressed"]

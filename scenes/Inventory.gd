@@ -72,10 +72,16 @@ func load_inventory_items():
 			# TextureButtonNode Configuration
 			TextureButtonNode.expand = true
 			TextureButtonNode.texture_normal = load(item.file)
-			TextureButtonNode.rect_size.x = 248
-			TextureButtonNode.rect_size.y = 248
-			TextureButtonNode.rect_position.x = 95
-			TextureButtonNode.rect_position.y = 95
+			if(TextureButtonNode.texture_normal.get_height() > TextureButtonNode.texture_normal.get_width()):
+				TextureButtonNode.rect_size.x = (TextureButtonNode.texture_normal.get_width()*248)/TextureButtonNode.texture_normal.get_height()
+				TextureButtonNode.rect_size.y = 248
+				TextureButtonNode.rect_position.x = 95 + 124 - TextureButtonNode.rect_size.x/2
+				TextureButtonNode.rect_position.y = 95
+			else:
+				TextureButtonNode.rect_size.x = 248
+				TextureButtonNode.rect_size.y = (TextureButtonNode.texture_normal.get_height()*248)/TextureButtonNode.texture_normal.get_width()
+				TextureButtonNode.rect_position.x = 95
+				TextureButtonNode.rect_position.y = 95 + 124 - TextureButtonNode.rect_size.y/2
 			TextureButtonNode.emit_signal("pressed")
 			TextureButtonNode.set_script(load("res://scenes/InventoryItem.gd"))
 			TextureButtonNode.item_type = item.type
@@ -83,8 +89,8 @@ func load_inventory_items():
 			# LabelNode Configuration
 			LabelNode.align = HALIGN_RIGHT
 			LabelNode.text = "x"+" "+ String(item.number)
-			LabelNode.rect_position.x = 13
-			LabelNode.rect_position.y = 229
+			LabelNode.rect_position.x = 123
+			LabelNode.rect_position.y = 305
 			LabelNode.rect_size.x = 225
 			LabelNode.rect_size.y = 55
 			dynamic_font.font_data = load("res://fonts/Sugar Snow.ttf")
@@ -94,4 +100,8 @@ func load_inventory_items():
 			# Join all Nodes
 			SlotNode.add_child(TextureButtonNode)
 			GridContainerNode.add_child(SlotNode)
-			TextureButtonNode.add_child(LabelNode)
+			SlotNode.add_child(LabelNode)
+			
+func list_of_scale_values(values):
+	for i in range(100, 0, -1):
+		values.append((i*0.01))

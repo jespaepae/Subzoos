@@ -302,9 +302,9 @@ rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
 [node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel7"]
-margin_left = 34.0
+margin_left = 95.0
 margin_top = 14.0
-margin_right = 318.0
+margin_right = 281.0
 margin_bottom = 310.0
 texture_normal = ExtResource( 21 )
 expand = true
@@ -351,9 +351,9 @@ rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
 [node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel10"]
-margin_left = 34.0
+margin_left = 72.0
 margin_top = 14.0
-margin_right = 318.0
+margin_right = 273.0
 margin_bottom = 310.0
 texture_normal = ExtResource( 23 )
 expand = true
@@ -406,7 +406,7 @@ custom_styles/panel = SubResource( 2 )
 
 [node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel7"]
 margin_left = 34.0
-margin_top = 14.0
+margin_top = 59.0
 margin_right = 318.0
 margin_bottom = 310.0
 texture_normal = ExtResource( 28 )

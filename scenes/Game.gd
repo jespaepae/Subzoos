@@ -12,8 +12,10 @@ onready var ShopButton = $ShopButton
 onready var InventoryButton = $InventoryButton
 onready var SwimTimer = $SwimTimer
 onready var SeaMonkeyScript = load("res://scenes/SeaMonkey.gd")
+onready var PlantBeenGrabbed = false
 
 func _ready():
+	randomize()
 	MusicController.play_tank_music()
 	self.set_font_size(150)
 	if game_data.size() != 0:
@@ -22,6 +24,7 @@ func _ready():
 		self.change_floor(game_data.background.floor)
 		self.load_sea_monkeys()
 		self.load_food()
+		self.load_decors()
 		if game_data.set_in_tank.status == 1:
 			self.hide_buttons()
 		else:
@@ -29,6 +32,7 @@ func _ready():
 
 func _process(_delta):
 	self.update_sea_monkeys()
+	self.update_decors()
 	SaveFile.save_data()
 
 func _on_ShopButton_pressed():
@@ -86,6 +90,13 @@ func _input(event):
 			var id = randi()
 			self.add_sea_monkey(event.position.x, event.position.y, "baby", 20, id, 7)
 			self.save_sea_monkey(event.position.x, event.position.y, "baby", 20, id, 7)
+			game_data.set_in_tank.status = 0
+			SaveFile.save_data()
+		else:
+			self.show_buttons()
+			var id = randi()
+			self.add_decor(event.position.x, event.position.y, game_data.set_in_tank.resource, id)
+			self.save_decor(event.position.x, event.position.y, game_data.set_in_tank.resource, id)
 			game_data.set_in_tank.status = 0
 			SaveFile.save_data()
 		MusicController.play_pop_sf()
@@ -291,3 +302,47 @@ func _on_BubbleTimer_timeout():
 	var new_timer = rng.randf_range(1.0, 15.0)
 	self.get_node("BubbleTimer").wait_time = new_timer
 	add_bubbles()
+	
+func add_decor(x, y, decor, id):
+	# Create Decor nodes
+	var SpriteNode = Sprite.new()
+	
+	# Set sprite texture and position
+	SpriteNode.texture = load(decor)
+	SpriteNode.position.x = x
+	SpriteNode.position.y = y
+	SpriteNode.offset.y = - SpriteNode.texture.get_height()/2.0 + 0.1 * SpriteNode.texture.get_height()
+	SpriteNode.add_to_group("Decor")
+	SpriteNode.set_script(load("res://scenes/KinematicBody2D.gd"))
+	SpriteNode.id = id
+	
+	self.get_node("Decorations").add_child(SpriteNode)
+	
+func save_decor(x, y, decor, id):
+	var dir = {
+		"x": x,
+		"y": y,
+		"id": id,
+		"file": decor
+	}
+	var i = 0
+	for decor in game_data.decors:
+		if(decor.id == id):
+			break;
+		i += 1
+	if i < game_data.decors.size():
+		game_data.decors.remove(i)
+	game_data.decors.append(dir)
+	
+	
+func load_decors():
+	for decor in game_data.decors:
+		self.add_decor(decor.x, decor.y, decor.file, decor.id)
+		
+func update_decors():
+	for decor in self.get_node("Decorations").get_children():
+		if decor is Sprite:
+			save_decor(decor.position.x, decor.position.y, decor.texture.get_path(), decor.id)
+
+func delete_decor(_x, _y, _decor):
+	pass

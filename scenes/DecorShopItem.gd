@@ -67,15 +67,22 @@ func pop_up(item_file):
 	ItemSprite.texture = load(shop_item.file)
 	ItemSprite.position.x = -100.538
 	ItemSprite.position.y = -97.645
-	ItemSprite.scale.x = 0.302
-	ItemSprite.scale.y = 0.303
+	var scale = 1.0
+	var list = []
+	list_of_scale_values(list)
+	for i in list:
+		if(ItemSprite.texture.get_height()*i <= 145 and ItemSprite.texture.get_width()*i <= 155):
+			scale = i
+			break
+	ItemSprite.scale.x = scale
+	ItemSprite.scale.y = scale
 	
 	# CoinSprite Configuration
 	CoinSprite.texture = load("res://assets/images/menus and ui/coin.png")
-	CoinSprite.position.x = -152.808
-	CoinSprite.position.y = 292.08
-	CoinSprite.scale.x = 0.956
-	CoinSprite.scale.y = 0.953
+	CoinSprite.position.x = -142.808
+	CoinSprite.position.y = -9.08
+	CoinSprite.scale.x = 0.289
+	CoinSprite.scale.y = 0.289
 	
 	# BuyTextureButton Configuration
 	BuyTextureButton.expand = true
@@ -145,15 +152,15 @@ func pop_up(item_file):
 	ItemLabel.text = shop_item.name
 	ItemLabel.align = Label.ALIGN_CENTER
 	ItemLabel.valign = Label.VALIGN_CENTER
-	ItemLabel.autowrap = true
-	ItemLabel.margin_left = -80
-	ItemLabel.margin_top = -203
-	ItemLabel.margin_right = 100
-	ItemLabel.margin_bottom = -153
-	ItemLabel.rect_position.x = -85.516
-	ItemLabel.rect_position.y = -253.933
-	ItemLabel.rect_size.x = 181
-	ItemLabel.rect_size.y = 50
+	ItemLabel.autowrap = false
+	ItemLabel.margin_left = -89
+	ItemLabel.margin_top = -212
+	ItemLabel.margin_right = 115
+	ItemLabel.margin_bottom = -154
+	ItemLabel.rect_position.x = -89
+	ItemLabel.rect_position.y = -213.933
+	ItemLabel.rect_size.x = 204
+	ItemLabel.rect_size.y = 58
 	self.set_font_size(ItemLabel, 35)
 	
 	# DescriptionLabel Configuration
@@ -172,19 +179,19 @@ func pop_up(item_file):
 	# MoneyLabel Configuration
 	MoneyLabel.text = "%03d" % shop_item.price
 	MoneyLabel.valign = Label.VALIGN_CENTER
-	MoneyLabel.margin_left = -56
-	MoneyLabel.margin_top = 249
-	MoneyLabel.margin_right = 177
-	MoneyLabel.margin_bottom = 352
-	MoneyLabel.rect_position.x = -56.465
-	MoneyLabel.rect_position.y = 249.804
+	MoneyLabel.margin_left = 94
+	MoneyLabel.margin_top = -55
+	MoneyLabel.margin_right = 328
+	MoneyLabel.margin_bottom = 47
+	MoneyLabel.rect_position.x = 94.465
+	MoneyLabel.rect_position.y = -55.804
 	MoneyLabel.rect_size.x = 234
 	MoneyLabel.rect_size.y = 103
 	self.set_font_size(MoneyLabel, 100)
 	
 	# Join all Nodes
-	ItemSprite.add_child(CoinSprite)
-	ItemSprite.add_child(MoneyLabel)
+	PopUpSprite.add_child(CoinSprite)
+	CoinSprite.add_child(MoneyLabel)
 	BuyTextureButton.add_child(BuyLabel)
 	PopUpSprite.add_child(BuyTextureButton)
 	CancelTextureButton.add_child(CancelLabel)
@@ -197,3 +204,7 @@ func pop_up(item_file):
 		
 func substract_money(q):
 	game_data.money -= q
+	
+func list_of_scale_values(values):
+	for i in range(100, 0, -1):
+		values.append((i*0.01))

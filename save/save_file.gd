@@ -16,7 +16,7 @@ func load_data():
 	var file = File.new()
 	if not file.file_exists(SAVE_FILE):
 		game_data = {
-			"money": 0,
+			"money": 5000,
 			"background": {
 				"name":"res://assets/images/tank bgs/aquarium background.png",
 				"floor":"res://assets/images/tank floor/tank floor 1.png"
@@ -29,6 +29,7 @@ func load_data():
 			},
 			"sea_monkeys": [],
 			"foods": [],
+			"decors": [],
 			"inventory_items": [ {
 				"type": "background",
 				"file": "res://assets/images/tank bgs/aquarium background.png",
