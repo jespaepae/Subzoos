@@ -13,7 +13,9 @@ onready var game_data = SaveFile.game_data
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
-	var timer = get_node("../SwimTimer")
+	#var timer = get_node("../SwimTimer")
+	var timer = self.get_node("OwnSwimTimer")
+	timer.start(rng.randf_range(0.5, 3.0))
 	var area2 = get_child(2)
 	var grow_up_timer = self.get_child(3)
 	money_label = get_node("../Money")
@@ -68,8 +70,17 @@ func _on_SwimTimer_timeout():
 func swim():
 	if sprite.animation != "ded":
 		rng.randomize()
-		var x = rng.randf_range(-200.0, 200.0)
-		var y = rng.randf_range(-200.0, 200.0)
+		var foods = self.get_tree().get_nodes_in_group("Food")
+		var x
+		var y
+		if(foods.size() > 0): # Calculate direction to go to the food
+			x = foods[0].get_child(0).position.x - self.position.x
+			if x > 200 or x < -200: x = (foods[0].get_child(0).position.x - self.position.x)*500 / get_viewport_rect().size.x
+			y = foods[0].get_child(0).position.y - self.position.y
+			if y > 200 or y < -200: y = (foods[0].get_child(0).position.y - self.position.y)*500 / get_viewport_rect().size.y
+		else:
+			x = rng.randf_range(-200.0, 200.0)
+			y = rng.randf_range(-200.0, 200.0)
 		set_linear_velocity(Vector2(x,y))
 		self.get_child(0).rotation = atan2(y,x) + PI/2
 	else:
@@ -84,7 +95,9 @@ func swim():
 func _on_Area2D_body_entered(body):
 	if(body.get_child(0) is Sprite):
 		if sprite.animation != "ded":
-			self.life += 5
+			self.life += 10
+			game_data.money += 7
+			money_label.text = "%04d" % game_data.money
 			delete_food(body.get_child(0).position.x, body.get_child(0).position.y)
 			SaveFile.save_data()
 			body.queue_free()
@@ -110,7 +123,7 @@ func delete_sea_monkey():
 func grow_up():
 	if (sprite.animation != "ded" and sprite.animation != "display"):
 		MusicController.play_pop_sf()
-		game_data.money += 5
+		game_data.money += 15
 		money_label.text = "%04d" % game_data.money
 		sprite.animation = "display"
 	

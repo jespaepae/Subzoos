@@ -31,7 +31,8 @@ func change_to_scene(scene):
 		print ("An unexpected error occured when trying to switch to" + scene + "scene")
 
 func _on_TextureButton_pressed():
-	if(self.has_pressed()):
+	var PopUpSprite = self.get_parent().get_parent().get_parent().get_parent().get_parent().get_node_or_null("PopUpSprite")
+	if(self.has_pressed() and !is_instance_valid(PopUpSprite)):
 		pop_up(self.texture_normal.get_path())
 			
 func pop_up(item_file):
@@ -153,15 +154,15 @@ func pop_up(item_file):
 	ItemLabel.align = Label.ALIGN_CENTER
 	ItemLabel.valign = Label.VALIGN_CENTER
 	ItemLabel.autowrap = false
-	ItemLabel.margin_left = -89
+	ItemLabel.margin_left = -9
 	ItemLabel.margin_top = -212
 	ItemLabel.margin_right = 115
 	ItemLabel.margin_bottom = -154
-	ItemLabel.rect_position.x = -89
-	ItemLabel.rect_position.y = -213.933
+	ItemLabel.rect_position.x = -135
+	ItemLabel.rect_position.y = -200.933
 	ItemLabel.rect_size.x = 204
 	ItemLabel.rect_size.y = 58
-	self.set_font_size(ItemLabel, 35)
+	self.set_font_size(ItemLabel, 30)
 	
 	# DescriptionLabel Configuration
 	DescriptionLabel.text = shop_item.description

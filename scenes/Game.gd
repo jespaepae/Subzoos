@@ -88,8 +88,8 @@ func _input(event):
 		elif(game_data.set_in_tank.resource == "baby"):
 			self.show_buttons()
 			var id = randi()
-			self.add_sea_monkey(event.position.x, event.position.y, "baby", 20, id, 7)
-			self.save_sea_monkey(event.position.x, event.position.y, "baby", 20, id, 7)
+			self.add_sea_monkey(event.position.x, event.position.y, "baby", 360, id, 60)
+			self.save_sea_monkey(event.position.x, event.position.y, "baby", 360, id, 60)
 			game_data.set_in_tank.status = 0
 			SaveFile.save_data()
 		else:
@@ -111,6 +111,7 @@ func add_sea_monkey(x, y, status, life, id, time_to_grow_up):
 	var RectangleShape2DNode = RectangleShape2D.new()
 	var RectangleShape2DNode2 = RectangleShape2D.new()
 	var TimerNode = Timer.new()
+	var OwnSwimTimer = Timer.new()
 	
 	# Sea Monkey Node Configuration
 	SeaMonkeyNode.mode = RigidBody2D.MODE_CHARACTER
@@ -155,12 +156,17 @@ func add_sea_monkey(x, y, status, life, id, time_to_grow_up):
 		TimerNode.wait_time = 0.1
 	TimerNode.autostart = true
 	
+	# SwimTimerConfiguration
+	OwnSwimTimer.name = "OwnSwimTimer"
+	OwnSwimTimer.autostart = true
+	
 	#Join all nodes
 	SeaMonkeyNode.add_child(AnimatedSpriteNode)
 	SeaMonkeyNode.add_child(CollisionShape2DNode)
 	SeaMonkeyNode.add_child(Area2DNode)
 	Area2DNode.add_child(CollisionShape2DNode2)
 	SeaMonkeyNode.add_child(TimerNode)
+	SeaMonkeyNode.add_child(OwnSwimTimer)
 	
 	self.add_child(SeaMonkeyNode)
 	
@@ -224,6 +230,7 @@ func add_food(x, y):
 	FoodNode.set_script(load("res://scenes/Food.gd"))
 	FoodNode.add_child(SpriteNode)
 	FoodNode.add_child(CollisionShape2DNode)
+	FoodNode.add_to_group("Food")
 	
 	self.add_child(FoodNode)
 	
@@ -316,6 +323,15 @@ func add_decor(x, y, decor, id):
 	SpriteNode.set_script(load("res://scenes/KinematicBody2D.gd"))
 	SpriteNode.id = id
 	
+	#Find if it needs to move
+	for item in game_data.inventory_items:
+		if(item.file == decor and item.can_move):
+			rng.randomize()
+			var speed = rng.randf_range(1.0, 3.0)
+			SpriteNode.material = ShaderMaterial.new()
+			SpriteNode.material.shader = load("res://scenes/Game.tscn::3")
+			SpriteNode.material.set_shader_param("speed", speed)
+	
 	self.get_node("Decorations").add_child(SpriteNode)
 	
 func save_decor(x, y, decor, id):
@@ -344,5 +360,24 @@ func update_decors():
 		if decor is Sprite:
 			save_decor(decor.position.x, decor.position.y, decor.texture.get_path(), decor.id)
 
-func delete_decor(_x, _y, _decor):
-	pass
+
+func _on_InventoryButton_mouse_entered():
+	self.get_node("InventoryButton").rect_scale.x = 1.3
+	self.get_node("InventoryButton").rect_scale.y = 1.3
+	self.get_node("InventoryButton").rect_position.x = 700
+
+
+func _on_InventoryButton_mouse_exited():
+	self.get_node("InventoryButton").rect_scale.x = 1
+	self.get_node("InventoryButton").rect_scale.y = 1
+	self.get_node("InventoryButton").rect_position.x = 766
+
+
+func _on_ShopButton_mouse_entered():
+	self.get_node("ShopButton").rect_scale.x = 1.2
+	self.get_node("ShopButton").rect_scale.y = 1.2
+
+
+func _on_ShopButton_mouse_exited():
+	self.get_node("ShopButton").rect_scale.x = 1
+	self.get_node("ShopButton").rect_scale.y = 1

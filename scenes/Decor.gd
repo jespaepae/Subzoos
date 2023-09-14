@@ -16,8 +16,10 @@ func set_font_size(label, size):
 	font.size = size
 
 func _on_BackButton_pressed():
-	MusicController.play_ui_clic()
-	self.change_to_scene("res://scenes/Shop.tscn")
+	var PopUpSprite = self.get_node_or_null("PopUpSprite")
+	if(!is_instance_valid(PopUpSprite)):
+		MusicController.play_ui_clic()
+		self.change_to_scene("res://scenes/Shop.tscn")
 	
 func change_to_scene(scene):
 	if get_tree().change_scene(scene) != OK:

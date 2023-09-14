@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://assets/images/menus and ui/shop bg.png" type="Texture" id=1]
 [ext_resource path="res://fonts/Sugar Snow.ttf" type="DynamicFontData" id=2]
@@ -38,6 +38,8 @@
 [ext_resource path="res://assets/images/tank decor/space 5.png" type="Texture" id=36]
 [ext_resource path="res://assets/images/tank decor/space 1.png" type="Texture" id=37]
 [ext_resource path="res://assets/images/tank decor/space 4.png" type="Texture" id=38]
+[ext_resource path="res://assets/images/menus and ui/black-background.jpg" type="Texture" id=39]
+[ext_resource path="res://assets/images/tank decor/plant 1.png" type="Texture" id=40]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -85,18 +87,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 100
 
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer/GridContainer"]
+[node name="PlantContainer" type="GridContainer" parent="ScrollContainer/GridContainer" groups=["Plants"]]
 margin_right = 1058.0
 margin_bottom = 704.0
 columns = 3
 
-[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/PlantContainer" groups=["Plants"]]
 margin_right = 350.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel6"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/PlantContainer/Panel6" groups=["Plants"]]
 margin_left = 58.0
 margin_top = 11.0
 margin_right = 300.0
@@ -105,14 +107,14 @@ texture_normal = ExtResource( 6 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/PlantContainer" groups=["Plants"]]
 margin_left = 354.0
 margin_right = 704.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel7"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/PlantContainer/Panel7" groups=["Plants"]]
 margin_left = 60.0
 margin_top = 4.0
 margin_right = 317.0
@@ -121,14 +123,14 @@ texture_normal = ExtResource( 11 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/PlantContainer" groups=["Plants"]]
 margin_left = 708.0
 margin_right = 1058.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel8"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/PlantContainer/Panel8" groups=["Plants"]]
 margin_left = 51.0
 margin_top = -17.0
 margin_right = 308.0
@@ -137,14 +139,14 @@ texture_normal = ExtResource( 12 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer"]
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/PlantContainer" groups=["Plants"]]
 margin_top = 354.0
 margin_right = 350.0
 margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer/Panel9"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/PlantContainer/Panel9" groups=["Plants"]]
 margin_left = 113.0
 margin_top = -3.0
 margin_right = 236.0
@@ -153,14 +155,31 @@ texture_normal = ExtResource( 13 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Sprite" type="Sprite" parent="ScrollContainer/GridContainer"]
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/PlantContainer" groups=["Plants"]]
+margin_left = 354.0
+margin_top = 354.0
+margin_right = 704.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 350, 350 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/PlantContainer/Panel10" groups=["Plants"]]
+margin_left = 56.0
+margin_top = -10.0
+margin_right = 291.0
+margin_bottom = 334.0
+texture_normal = ExtResource( 40 )
+expand = true
+script = ExtResource( 7 )
+
+[node name="PlantSet" type="Sprite" parent="ScrollContainer/GridContainer" groups=["Plants"]]
 self_modulate = Color( 1, 1, 1, 0.737255 )
 position = Vector2( -3092, 704 )
 scale = Vector2( 14.674, 0.2 )
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite"]
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/PlantSet" groups=["Plants"]]
 margin_left = 221.0
 margin_top = 15.0
 margin_right = 1087.0
@@ -170,19 +189,19 @@ custom_fonts/font = SubResource( 3 )
 text = "Plant Set"
 valign = 1
 
-[node name="GridContainer2" type="GridContainer" parent="ScrollContainer/GridContainer"]
+[node name="RockContainer" type="GridContainer" parent="ScrollContainer/GridContainer"]
 margin_top = 804.0
 margin_right = 1058.0
 margin_bottom = 1508.0
 columns = 3
 
-[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/RockContainer"]
 margin_right = 350.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel6"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/RockContainer/Panel6"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -191,14 +210,14 @@ texture_normal = ExtResource( 15 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/RockContainer"]
 margin_left = 354.0
 margin_right = 704.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel7"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/RockContainer/Panel7"]
 margin_left = 86.0
 margin_top = 150.0
 margin_right = 261.0
@@ -207,14 +226,14 @@ texture_normal = ExtResource( 18 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/RockContainer"]
 margin_left = 708.0
 margin_right = 1058.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel8"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/RockContainer/Panel8"]
 margin_left = 39.0
 margin_top = 72.0
 margin_right = 298.0
@@ -223,14 +242,14 @@ texture_normal = ExtResource( 17 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/RockContainer"]
 margin_top = 354.0
 margin_right = 350.0
 margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel9"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/RockContainer/Panel9"]
 margin_left = 81.0
 margin_top = 156.0
 margin_right = 264.0
@@ -239,7 +258,7 @@ texture_normal = ExtResource( 16 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer2"]
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/RockContainer"]
 margin_left = 354.0
 margin_top = 354.0
 margin_right = 704.0
@@ -247,7 +266,7 @@ margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer2/Panel10"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/RockContainer/Panel10"]
 margin_left = 41.0
 margin_top = 35.0
 margin_right = 316.0
@@ -256,14 +275,22 @@ texture_normal = ExtResource( 14 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Sprite2" type="Sprite" parent="ScrollContainer/GridContainer"]
+[node name="RequiresSprite" type="Sprite" parent="ScrollContainer/GridContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.560784 )
+position = Vector2( 0, 794 )
+scale = Vector2( 1.684, 2 )
+texture = ExtResource( 39 )
+centered = false
+
+[node name="RockSet" type="Sprite" parent="ScrollContainer/GridContainer"]
 self_modulate = Color( 1, 1, 1, 0.737255 )
 position = Vector2( -3092, 1505.4 )
 scale = Vector2( 14.674, 0.2 )
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite2"]
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/RockSet"]
 margin_left = 221.0
 margin_top = 15.0
 margin_right = 1087.0
@@ -273,19 +300,19 @@ custom_fonts/font = SubResource( 3 )
 text = "Rock Set"
 valign = 1
 
-[node name="GridContainer3" type="GridContainer" parent="ScrollContainer/GridContainer"]
+[node name="ArtificialContainer" type="GridContainer" parent="ScrollContainer/GridContainer"]
 margin_top = 1608.0
 margin_right = 1058.0
 margin_bottom = 2312.0
 columns = 3
 
-[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/ArtificialContainer"]
 margin_right = 350.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel6"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/ArtificialContainer/Panel6"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -294,14 +321,14 @@ texture_normal = ExtResource( 22 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/ArtificialContainer"]
 margin_left = 354.0
 margin_right = 704.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel7"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/ArtificialContainer/Panel7"]
 margin_left = 95.0
 margin_top = 14.0
 margin_right = 281.0
@@ -310,14 +337,14 @@ texture_normal = ExtResource( 21 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/ArtificialContainer"]
 margin_left = 708.0
 margin_right = 1058.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel8"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/ArtificialContainer/Panel8"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -326,14 +353,14 @@ texture_normal = ExtResource( 20 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/ArtificialContainer"]
 margin_top = 354.0
 margin_right = 350.0
 margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel9"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/ArtificialContainer/Panel9"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -342,7 +369,7 @@ texture_normal = ExtResource( 19 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer3"]
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/ArtificialContainer"]
 margin_left = 354.0
 margin_top = 354.0
 margin_right = 704.0
@@ -350,7 +377,7 @@ margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer3/Panel10"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/ArtificialContainer/Panel10"]
 margin_left = 72.0
 margin_top = 14.0
 margin_right = 273.0
@@ -359,14 +386,22 @@ texture_normal = ExtResource( 23 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Sprite3" type="Sprite" parent="ScrollContainer/GridContainer"]
+[node name="Sprite9" type="Sprite" parent="ScrollContainer/GridContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.560784 )
+position = Vector2( 0, 1596 )
+scale = Vector2( 1.684, 2 )
+texture = ExtResource( 39 )
+centered = false
+
+[node name="ArtificialSet" type="Sprite" parent="ScrollContainer/GridContainer"]
 self_modulate = Color( 1, 1, 1, 0.737255 )
 position = Vector2( -3092, 2312 )
 scale = Vector2( 14.674, 0.2 )
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite3"]
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/ArtificialSet"]
 margin_left = 221.0
 margin_top = 15.0
 margin_right = 1087.0
@@ -376,19 +411,19 @@ custom_fonts/font = SubResource( 3 )
 text = "Artificial Set"
 valign = 1
 
-[node name="GridContainer4" type="GridContainer" parent="ScrollContainer/GridContainer"]
+[node name="CoralContainer" type="GridContainer" parent="ScrollContainer/GridContainer"]
 margin_top = 2412.0
 margin_right = 1058.0
 margin_bottom = 3116.0
 columns = 3
 
-[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/CoralContainer"]
 margin_right = 350.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel6"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/CoralContainer/Panel6"]
 margin_left = 73.0
 margin_top = 68.0
 margin_right = 264.0
@@ -397,14 +432,14 @@ texture_normal = ExtResource( 26 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/CoralContainer"]
 margin_left = 354.0
 margin_right = 704.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel7"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/CoralContainer/Panel7"]
 margin_left = 34.0
 margin_top = 59.0
 margin_right = 318.0
@@ -413,14 +448,14 @@ texture_normal = ExtResource( 28 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/CoralContainer"]
 margin_left = 708.0
 margin_right = 1058.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel8"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/CoralContainer/Panel8"]
 margin_left = 51.0
 margin_top = 73.0
 margin_right = 278.0
@@ -429,14 +464,14 @@ texture_normal = ExtResource( 27 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/CoralContainer"]
 margin_top = 354.0
 margin_right = 350.0
 margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel9"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/CoralContainer/Panel9"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -445,7 +480,7 @@ texture_normal = ExtResource( 24 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer4"]
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/CoralContainer"]
 margin_left = 354.0
 margin_top = 354.0
 margin_right = 704.0
@@ -453,7 +488,7 @@ margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer4/Panel10"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/CoralContainer/Panel10"]
 margin_left = 34.0
 margin_top = 53.0
 margin_right = 318.0
@@ -462,14 +497,22 @@ texture_normal = ExtResource( 25 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Sprite4" type="Sprite" parent="ScrollContainer/GridContainer"]
+[node name="Sprite10" type="Sprite" parent="ScrollContainer/GridContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.560784 )
+position = Vector2( 0, 2400 )
+scale = Vector2( 1.684, 2 )
+texture = ExtResource( 39 )
+centered = false
+
+[node name="CoralSet" type="Sprite" parent="ScrollContainer/GridContainer"]
 self_modulate = Color( 1, 1, 1, 0.737255 )
 position = Vector2( -3092, 3116 )
 scale = Vector2( 14.674, 0.2 )
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite4"]
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/CoralSet"]
 margin_left = 221.0
 margin_top = 15.0
 margin_right = 1087.0
@@ -479,19 +522,19 @@ custom_fonts/font = SubResource( 3 )
 text = "Coral Set"
 valign = 1
 
-[node name="GridContainer5" type="GridContainer" parent="ScrollContainer/GridContainer"]
+[node name="HawaiianContainer" type="GridContainer" parent="ScrollContainer/GridContainer"]
 margin_top = 3216.0
 margin_right = 1058.0
 margin_bottom = 3920.0
 columns = 3
 
-[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/HawaiianContainer"]
 margin_right = 350.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel6"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/HawaiianContainer/Panel6"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -500,14 +543,14 @@ texture_normal = ExtResource( 33 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/HawaiianContainer"]
 margin_left = 354.0
 margin_right = 704.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel7"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/HawaiianContainer/Panel7"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -516,14 +559,14 @@ texture_normal = ExtResource( 31 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/HawaiianContainer"]
 margin_left = 708.0
 margin_right = 1058.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel8"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/HawaiianContainer/Panel8"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -532,14 +575,14 @@ texture_normal = ExtResource( 30 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/HawaiianContainer"]
 margin_top = 354.0
 margin_right = 350.0
 margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel9"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/HawaiianContainer/Panel9"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -548,7 +591,7 @@ texture_normal = ExtResource( 29 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer5"]
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/HawaiianContainer"]
 margin_left = 354.0
 margin_top = 354.0
 margin_right = 704.0
@@ -556,7 +599,7 @@ margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer5/Panel10"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/HawaiianContainer/Panel10"]
 margin_left = 60.0
 margin_top = 14.0
 margin_right = 276.0
@@ -565,14 +608,22 @@ texture_normal = ExtResource( 32 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Sprite5" type="Sprite" parent="ScrollContainer/GridContainer"]
+[node name="Sprite11" type="Sprite" parent="ScrollContainer/GridContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.560784 )
+position = Vector2( 0, 3205 )
+scale = Vector2( 1.684, 2 )
+texture = ExtResource( 39 )
+centered = false
+
+[node name="HawaiianSet" type="Sprite" parent="ScrollContainer/GridContainer"]
 self_modulate = Color( 1, 1, 1, 0.737255 )
 position = Vector2( -3092, 3920 )
 scale = Vector2( 14.674, 0.2 )
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite5"]
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/HawaiianSet"]
 margin_left = 221.0
 margin_top = 15.0
 margin_right = 1087.0
@@ -582,19 +633,19 @@ custom_fonts/font = SubResource( 3 )
 text = "Hawaiian Set"
 valign = 1
 
-[node name="GridContainer6" type="GridContainer" parent="ScrollContainer/GridContainer"]
+[node name="SpaceContainer" type="GridContainer" parent="ScrollContainer/GridContainer"]
 margin_top = 4020.0
 margin_right = 1058.0
 margin_bottom = 4724.0
 columns = 3
 
-[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+[node name="Panel6" type="Panel" parent="ScrollContainer/GridContainer/SpaceContainer"]
 margin_right = 350.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel6"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/SpaceContainer/Panel6"]
 margin_left = 80.0
 margin_top = 14.0
 margin_right = 287.0
@@ -603,14 +654,14 @@ texture_normal = ExtResource( 37 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+[node name="Panel7" type="Panel" parent="ScrollContainer/GridContainer/SpaceContainer"]
 margin_left = 354.0
 margin_right = 704.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel7"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/SpaceContainer/Panel7"]
 margin_left = 95.0
 margin_top = 14.0
 margin_right = 279.0
@@ -619,14 +670,14 @@ texture_normal = ExtResource( 34 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+[node name="Panel8" type="Panel" parent="ScrollContainer/GridContainer/SpaceContainer"]
 margin_left = 708.0
 margin_right = 1058.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel8"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/SpaceContainer/Panel8"]
 margin_left = 133.0
 margin_top = 14.0
 margin_right = 266.0
@@ -635,14 +686,14 @@ texture_normal = ExtResource( 35 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+[node name="Panel9" type="Panel" parent="ScrollContainer/GridContainer/SpaceContainer"]
 margin_top = 354.0
 margin_right = 350.0
 margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel9"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/SpaceContainer/Panel9"]
 margin_left = 107.0
 margin_top = 14.0
 margin_right = 261.0
@@ -651,7 +702,7 @@ texture_normal = ExtResource( 38 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/GridContainer6"]
+[node name="Panel10" type="Panel" parent="ScrollContainer/GridContainer/SpaceContainer"]
 margin_left = 354.0
 margin_top = 354.0
 margin_right = 704.0
@@ -659,7 +710,7 @@ margin_bottom = 704.0
 rect_min_size = Vector2( 350, 350 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/GridContainer6/Panel10"]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/GridContainer/SpaceContainer/Panel10"]
 margin_left = 34.0
 margin_top = 14.0
 margin_right = 318.0
@@ -668,14 +719,22 @@ texture_normal = ExtResource( 36 )
 expand = true
 script = ExtResource( 7 )
 
-[node name="Sprite6" type="Sprite" parent="ScrollContainer/GridContainer"]
+[node name="Sprite12" type="Sprite" parent="ScrollContainer/GridContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.560784 )
+position = Vector2( 0, 4010 )
+scale = Vector2( 1.684, 2 )
+texture = ExtResource( 39 )
+centered = false
+
+[node name="SpaceSet" type="Sprite" parent="ScrollContainer/GridContainer"]
 self_modulate = Color( 1, 1, 1, 0.737255 )
 position = Vector2( -3092, 4724 )
 scale = Vector2( 14.674, 0.2 )
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Label" type="Label" parent="ScrollContainer/GridContainer/Sprite6"]
+[node name="Label" type="Label" parent="ScrollContainer/GridContainer/SpaceSet"]
 margin_left = 221.0
 margin_top = 15.0
 margin_right = 1087.0

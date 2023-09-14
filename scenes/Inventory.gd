@@ -16,6 +16,9 @@ func _ready():
 	self.set_font_size(InventoryTitle, 160)
 	self.set_font_size(EggsLabel, 60)
 	self.set_font_size(FoodLabel, 60)
+	if game_data.eggs == 0 and game_data.money < 10 and game_data.sea_monkeys.size() == 0:
+		game_data.eggs = 1
+		SaveFile.save_data()
 	FoodLabel.text = "FOOD" + "  x" + String(game_data.food)
 	EggsLabel.text = "EGGS" + "  x" + String(game_data.eggs)
 
